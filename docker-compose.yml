@@ -2,9 +2,23 @@ services:
   generator:
     build:
       context: .
+      dockerfile: generator/Dockerfile
     depends_on:
       - postgres
       - minio
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/database
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
 
   postgres:
     image: postgres:16
@@ -29,6 +43,15 @@ services:
     volumes:
       - minio_data:/bitnami/minio/data
 
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
 volumes:
   postgres_data:
   minio_data:
+  redis_data:
