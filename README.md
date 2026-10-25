@@ -15,6 +15,7 @@ docker compose up -d postgres redis
 Запустить API из корня проекта:
 
 ```powershell
+uv run python -m backend.init_db
 uv run uvicorn backend.main:app --reload
 ```
 
@@ -23,6 +24,10 @@ uv run uvicorn backend.main:app --reload
 ```powershell
 docker compose up --build backend
 ```
+
+При запуске через Docker Compose сервис `db-init` автоматически создаёт таблицы
+и тестовые данные после готовности PostgreSQL и до запуска API. При локальном
+запуске сначала выполните `backend.init_db`, как показано выше.
 
 После запуска API будет доступен по адресу `http://localhost:8000`; интерактивная
 документация — `http://localhost:8000/docs`. Сборки сервисов описаны в

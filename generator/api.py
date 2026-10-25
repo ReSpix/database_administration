@@ -16,6 +16,8 @@ class ApiClient(ABC):
     async def post(self, path: str, payload: dict | None = None) -> dict: ...
     @abstractmethod
     async def get(self, path: str) -> dict: ...
+    @abstractmethod
+    async def put(self, path: str, payload: dict | None = None) -> dict: ...
     async def close(self) -> None: ...
 
 
@@ -83,6 +85,9 @@ class HttpApiClient(ApiClient):
 
     async def get(self, path: str) -> dict:
         return await self._request("GET", path, None)
+
+    async def put(self, path: str, payload: dict | None = None) -> dict:
+        return await self._request("PUT", path, payload or {})
 
     async def close(self) -> None:
         if self._client is not None:

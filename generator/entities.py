@@ -8,45 +8,32 @@ from .core import Point, SeededRNG
 
 
 class OrderStatus(str, Enum):
-    CREATED    = "created"
+    NEW        = "new"
     ACCEPTED   = "accepted"
-    REJECTED   = "rejected"
     READY      = "ready"
+    ASSIGNED   = "assigned"
     PICKED_UP  = "picked_up"
     DELIVERED  = "delivered"
     CANCELLED  = "cancelled"
 
 
 @dataclass
-class Order:
-    id: str
-    client_id: str
-    restaurant_id: str
-    address: Point
-    created_at: float
-    status: OrderStatus = OrderStatus.CREATED
-    accepted_at: Optional[float] = None
-    ready_at: Optional[float] = None
-    picked_up_at: Optional[float] = None
-    delivered_at: Optional[float] = None
-    courier_id: Optional[str] = None
-
-
-@dataclass
-class Client:
-    id: str
-    home: Point
-    cancel_prob: float = 0.02
+class MenuItem:
+    id: int
+    dish_id: int
+    name: str
+    price: float
 
 
 @dataclass
 class Restaurant:
-    id: str
+    id: int
     position: Point
     cuisine: str
-    prep_mean: float          # секунды (среднее время готовки)
+    prep_mean: float          # seconds (mean prep time)
     prep_sigma: float
     capacity: int
+    menu_items: list[MenuItem] = field(default_factory=list)
     accept_base_prob: float = 0.95
     active_orders: int = 0
 
@@ -62,16 +49,36 @@ class Restaurant:
     def sample_prep_time(self, rng: SeededRNG) -> float:
         return rng.lognormal(self.prep_mean, self.prep_sigma)
 
+    def pick_menu_items(self, rng: SeededRNG | None, count: int = 1) -> list[MenuItem]:
+        """Pick random menu items for an order."""
+        if not self.menu_items or rng is None:
+            return []
+        k = min(count, len(self.menu_items))
+        result = rng.weighted_choice(
+            self.menu_items, [1.0] * len(self.menu_items), k=k
+        )
+        # Ensure we always return a list
+        if isinstance(result, MenuItem):
+            return [result]
+        return result
+
+
+@dataclass
+class Client:
+    id: int
+    home: Point
+    cancel_prob: float = 0.02
+
 
 @dataclass
 class Courier:
-    id: str
+    id: int
     position: Point
     speed_mean: float
     speed_sigma: float
-    status: str = "IDLE"                      # IDLE | BUSY | OFFLINE | RESERVED
+    status: str = "IDLE"                      # IDLE | BUSY | OFFLINE
     route: list[dict] = field(default_factory=list)
-    active_order_id: Optional[str] = None     # ← один заказ, не список
+    active_order_id: Optional[int] = None     # one order at a time
     offer_accept_base: float = 0.85
     offer_detour_penalty: float = 0.15
 

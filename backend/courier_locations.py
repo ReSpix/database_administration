@@ -13,9 +13,10 @@ async def save_courier_location(
     longitude: float,
     latitude: float,
 ) -> None:
+    # Redis 8.x expects: geoadd(key, (longitude, latitude, member))
     await redis_client.geoadd(
         COURIER_LOCATIONS_KEY,
-        {str(courier_id): (longitude, latitude)},
+        (longitude, latitude, str(courier_id)),
     )
 
 

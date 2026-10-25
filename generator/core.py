@@ -79,5 +79,7 @@ class SeededRNG:
     def random(self) -> float:
         return self._r.random()
 
-    def weighted_choice(self, items, weights):
-        return self._r.choices(items, weights=weights, k=1)[0]
+    def weighted_choice(self, items, weights, k: int = 1):
+        if k == 1:
+            return self._r.choices(items, weights=weights, k=1)[0]
+        return self._r.choices(items, weights=weights, k=k)
