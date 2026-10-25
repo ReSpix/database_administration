@@ -9,21 +9,54 @@ from .api import HttpApiClient
 from .config import settings
 from .core import Point, SeededRNG
 from .engine import SimulationEngine
-from .entities import Client, Courier, Restaurant
+from .entities import Client, Courier, MenuItem, Restaurant
 
 log = logging.getLogger("delivery_sim")
 
 
 def _build_world():
-    clients = [Client(f"c{i}", home=Point(500 + i * 100, 500)) for i in range(20)]
-    restaurants = [
-        Restaurant("r1", Point(1000, 2000), "pizza", prep_mean=300, prep_sigma=0.3, capacity=15),
-        Restaurant("r2", Point(3000, 5000), "steak", prep_mean=480, prep_sigma=0.4, capacity=8),
-        Restaurant("r3", Point(6000, 3000), "sushi", prep_mean=360, prep_sigma=0.3, capacity=10),
+    # Create clients with integer IDs
+    # Use meter-based coordinates (origin at Moscow center)
+    clients = [
+        Client(i, home=Point(500 + i * 100, 500))
+        for i in range(1, 21)
     ]
+
+    # Create menu items for restaurants
+    pizza_items = [
+        MenuItem(1, 1, "Margherita", 12.50),
+        MenuItem(2, 2, "Pepperoni", 14.00),
+        MenuItem(3, 3, "Vegetarian", 13.00),
+        MenuItem(4, 4, "Four Cheese", 15.00),
+    ]
+    
+    steak_items = [
+        MenuItem(5, 5, "Ribeye Steak", 25.00),
+        MenuItem(6, 6, "Filet Mignon", 30.00),
+        MenuItem(7, 7, "Burger", 18.00),
+    ]
+    
+    sushi_items = [
+        MenuItem(8, 8, "Salmon Roll", 10.00),
+        MenuItem(9, 9, "Tuna Sashimi", 16.00),
+        MenuItem(10, 10, "California Roll", 12.00),
+        MenuItem(11, 11, "Eel Roll", 14.00),
+    ]
+
+    # Restaurants with meter-based positions (relative to Moscow center)
+    # Pizza: ~0m, 0m (Moscow center)
+    # Steak: ~300m east, 500m north
+    # Sushi: ~800m east, 1000m north
+    restaurants = [
+        Restaurant(1, Point(0, 0), "pizza", prep_mean=300, prep_sigma=0.3, capacity=15, menu_items=pizza_items),
+        Restaurant(2, Point(300, 500), "steak", prep_mean=480, prep_sigma=0.4, capacity=8, menu_items=steak_items),
+        Restaurant(3, Point(800, 1000), "sushi", prep_mean=360, prep_sigma=0.3, capacity=10, menu_items=sushi_items),
+    ]
+
+    # Couriers starting near restaurants (in meters)
     couriers = [
-        Courier(f"k{i}", Point(2000 + i * 200, 3000), speed_mean=6.0, speed_sigma=1.0)
-        for i in range(15)
+        Courier(i, Point(100 + i * 50, 100 + i * 50), speed_mean=6.0, speed_sigma=1.0)
+        for i in range(1, 16)
     ]
     return clients, restaurants, couriers
 
