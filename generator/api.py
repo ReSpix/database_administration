@@ -92,76 +92,119 @@ class HttpApiClient(ApiClient):
 
 # --- Mock для unit-тестов движка (не используется в main) ---
 class MockApiClient(ApiClient):
-    """Оставлен только для тестов движка. В main не подключается."""
+    """
+    Один заказ на курьера. Офферы выдаются «по запросу» IDLE-курьера,
+    отказ возвращает заказ в пул — следующий IDLE-курьер его получит.
+    """
     def __init__(self) -> None:
         self.orders: dict[str, dict] = {}
         self.restaurant_positions: dict[str, dict] = {}
         self.couriers: dict[str, dict] = {}
-        self.offers: dict[str, list[dict]] = {}
+        self.ready_pool: list[str] = []                # ← очередь готовых заказов
+        self.pending_offers: dict[str, dict] = {}      # courier_id → offer
         self._offer_seq = 0
+        self.calls: list[tuple] = []
 
     def register_restaurant(self, rid: str, pos: dict) -> None:
         self.restaurant_positions[rid] = pos
 
+    # ---------------------------------------------------------------- POST
     async def post(self, path: str, payload: dict | None = None) -> dict:
         payload = payload or {}
+        self.calls.append(("POST", path, payload))
         p = path.strip("/").split("/")
+
+        # создание заказа
         if p == ["v1", "orders"]:
             oid = f"ord_{len(self.orders) + 1}"
-            self.orders[oid] = {"id": oid, **payload}
+            self.orders[oid] = {"id": oid, **payload, "status": "created"}
             return {"orderId": oid}
+
+        # ресторан
         if len(p) == 5 and p[1] == "restaurant" and p[4] == "accept":
             self.orders[p[3]]["status"] = "accepted"; return {"ok": True}
+
         if len(p) == 5 and p[1] == "restaurant" and p[4] == "reject":
             self.orders[p[3]]["status"] = "rejected"; return {"ok": True}
+
         if len(p) == 5 and p[1] == "restaurant" and p[4] == "ready":
-            self.orders[p[3]]["status"] = "ready"
-            self._form_offer(p[3]); return {"ok": True}
+            oid = p[3]
+            self.orders[oid]["status"] = "ready"
+            self.ready_pool.append(oid)
+            return {"ok": True}
+
+        # heartbeat
         if len(p) == 4 and p[1] == "couriers" and p[3] == "status":
-            self.couriers[p[2]] = dict(payload); return {"ok": True}
-        if len(p) == 6 and p[1] == "couriers" and p[3] == "offers":
-            self.offers[p[2]] = [
-                o for o in self.offers.get(p[2], []) if o["id"] != p[4]
-            ]
+            cid = p[2]
+            prev = self.couriers.get(cid, {}).get("status")
+            self.couriers[cid] = dict(payload)
+            # если курьер сам объявил себя IDLE (например, после cancel)
+            if payload.get("status") == "IDLE" and cid in self.pending_offers:
+                self._return_offer_to_pool(cid)
             return {"ok": True}
+
+        # accept / decline оффера
+        if len(p) == 6 and p[1] == "couriers" and p[3] == "offers" and p[5] == "accept":
+            cid, oid = p[2], p[4]
+            self.pending_offers.pop(cid, None)
+            self.couriers[cid]["status"] = "BUSY"
+            self.orders[oid]["status"] = "assigned"
+            self.orders[oid]["courierId"] = cid
+            return {"ok": True}
+
+        if len(p) == 6 and p[1] == "couriers" and p[3] == "offers" and p[5] == "decline":
+            self._return_offer_to_pool(p[2]); return {"ok": True}
+
+        # complete-pickup / complete-delivery
         if len(p) == 6 and p[1] == "couriers" and p[3] == "tasks":
-            if p[5] == "complete-pickup":
-                self.orders[p[4]]["status"] = "picked_up"
-            elif p[5] == "complete-delivery":
-                self.orders[p[4]]["status"] = "delivered"
+            cid, oid, action = p[2], p[4], p[5]
+            if action == "complete-pickup":
+                self.orders[oid]["status"] = "picked_up"
+            elif action == "complete-delivery":
+                self.orders[oid]["status"] = "delivered"
+                self.couriers[cid]["status"] = "IDLE"      # ← освобождаем курьера
             return {"ok": True}
+
         return {"ok": True}
 
+    # ---------------------------------------------------------------- GET
     async def get(self, path: str) -> dict:
+        self.calls.append(("GET", path, None))
         p = path.strip("/").split("/")
+
         if len(p) == 4 and p[1] == "couriers" and p[3] == "offers":
-            offers = self.offers.get(p[2], [])
-            self.offers[p[2]] = []
-            return {"offers": offers}
+            cid = p[2]
+            # уже есть оффер — возвращаем, не создаём новый
+            if cid in self.pending_offers:
+                return {"offers": [self.pending_offers[cid]]}
+            # только IDLE и есть готовый заказ
+            if self.couriers.get(cid, {}).get("status") != "IDLE":
+                return {"offers": []}
+            if not self.ready_pool:
+                return {"offers": []}
+
+            oid = self.ready_pool.pop(0)
+            order = self.orders[oid]
+            rpos = self.restaurant_positions[order["restaurantId"]]
+            self._offer_seq += 1
+            offer = {
+                "id": f"offer_{self._offer_seq}",
+                "orderId": oid,
+                "route": [
+                    {"type": "pickup",  "orderId": oid, "location": rpos},
+                    {"type": "dropoff", "orderId": oid, "location": order["address"]},
+                ],
+            }
+            self.pending_offers[cid] = offer
+            self.couriers[cid]["status"] = "RESERVED"
+            return {"offers": [offer]}
+
         return {}
 
-    def _form_offer(self, order_id: str) -> None:
-        order = self.orders.get(order_id)
-        if not order:
-            return
-        idle = [cid for cid, c in self.couriers.items() if c.get("status") == "IDLE"]
-        if not idle:
-            return
-        rpos = self.restaurant_positions[order["restaurantId"]]
-        best = min(idle, key=lambda cid: (
-            (self.couriers[cid]["position"]["x"] - rpos["x"]) ** 2
-            + (self.couriers[cid]["position"]["y"] - rpos["y"]) ** 2
-        ))
-        self._offer_seq += 1
-        self.offers.setdefault(best, []).append({
-            "id": f"offer_{self._offer_seq}",
-            "orderId": order_id,
-            "route": [
-                {"type": "pickup",  "orderId": order_id, "location": rpos},
-                {"type": "dropoff", "orderId": order_id, "location": order["address"]},
-            ],
-        })
-        self.couriers[best]["status"] = "RESERVED"
-
-    async def close(self) -> None:
-        pass
+    # ---------------------------------------------------------------- helpers
+    def _return_offer_to_pool(self, cid: str) -> None:
+        offer = self.pending_offers.pop(cid, None)
+        if offer and self.orders[offer["orderId"]]["status"] == "ready":
+            self.ready_pool.insert(0, offer["orderId"])      # в начало очереди
+        if cid in self.couriers and self.couriers[cid].get("status") == "RESERVED":
+            self.couriers[cid]["status"] = "IDLE"

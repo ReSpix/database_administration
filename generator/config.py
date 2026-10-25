@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     sim_order_rate:   float = 0.2
     sim_courier_tick: float = 2.0
     sim_preflight:    bool  = True
+    sim_offer_timeout: float = 25.0     # сим-секунды, сколько курьер «думает»
 
     @field_validator("api_scheme")
     @classmethod

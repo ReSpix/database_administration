@@ -56,6 +56,9 @@ class CourierEmulator:
         })
 
     async def poll_offers(self) -> dict | None:
+        # если оффер уже есть — не опрашиваем, ждём решения
+        if self.pending_offer is not None:
+            return self.pending_offer
         resp = await self.api.get(f"/v1/couriers/{self.courier.id}/offers")
         offers = resp.get("offers") or []
         self.pending_offer = offers[0] if offers else None
@@ -64,24 +67,16 @@ class CourierEmulator:
     def decides_accept(self, offer: dict) -> bool:
         wp = offer["route"][0]["location"]
         target = Point(wp["x"], wp["y"])
-        # «эталон» — 1 км, дальше — штраф
         detour_ratio = self.courier.position.distance(target) / 1000.0
         return self.rng.random() < self.courier.accept_probability(detour_ratio)
 
     async def accept_offer(self, offer: dict) -> None:
-        await self.api.post(
-            f"/v1/couriers/{self.courier.id}/offers/{offer['id']}/accept", {}
-        )
+        await self.api.post(f"/v1/couriers/{self.courier.id}/offers/{offer['id']}/accept", {})
 
     async def decline_offer(self, offer: dict) -> None:
-        await self.api.post(
-            f"/v1/couriers/{self.courier.id}/offers/{offer['id']}/decline", {}
-        )
+        await self.api.post(f"/v1/couriers/{self.courier.id}/offers/{offer['id']}/decline", {})
 
     async def complete_waypoint(self, wp: dict) -> None:
-        oid = wp["orderId"]
-        cid = self.courier.id
-        if wp["type"] == "pickup":
-            await self.api.post(f"/v1/couriers/{cid}/tasks/{oid}/complete-pickup", {})
-        else:
-            await self.api.post(f"/v1/couriers/{cid}/tasks/{oid}/complete-delivery", {})
+        oid, cid = wp["orderId"], self.courier.id
+        action = "complete-pickup" if wp["type"] == "pickup" else "complete-delivery"
+        await self.api.post(f"/v1/couriers/{cid}/tasks/{oid}/{action}", {})

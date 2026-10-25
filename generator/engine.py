@@ -149,6 +149,7 @@ class SimulationEngine:
             courier.advance(self.courier_tick, self.rng)
             wp = courier.route[0]
             target = Point(wp["location"]["x"], wp["location"]["y"])
+
             if courier.position.distance(target) < ARRIVAL_THRESHOLD_M:
                 await cemu.complete_waypoint(wp)
                 courier.route.pop(0)
@@ -165,25 +166,27 @@ class SimulationEngine:
                     self.metrics.orders_delivered += 1
                     self.metrics.delivery_times.append(self.clock - order.created_at)
 
-                if wp["orderId"] in courier.active_batch:
-                    courier.active_batch.remove(wp["orderId"])
-                if not courier.active_batch and not courier.route:
+                # маршрут закончился → курьер свободен
+                if not courier.route:
+                    courier.active_order_id = None
                     courier.status = "IDLE"
 
-        # 2. heartbeat (обновляет позицию в диспетчере)
+        # 2. heartbeat
         await cemu.heartbeat()
 
         # 3. опрос офферов, если свободен
         if courier.status == "IDLE" and not courier.route:
             offer = await cemu.poll_offers()
             if offer:
-                self.queue.push(self.clock + 1.0,
+                # курьер «думает» 1–3 сим-секунды
+                self.queue.push(self.clock + self.rng.uniform(1.0, 3.0),
                                 EventType.OFFER_DECISION, {"courier_id": cid})
 
         # 4. следующий тик
         if self.clock < self.duration:
             self.queue.push(self.clock + self.courier_tick,
                             EventType.COURIER_TICK, {"courier_id": cid})
+
 
     async def _on_offer_decision(self, cid: str) -> None:
         courier = self.couriers_by_id[cid]
@@ -195,12 +198,13 @@ class SimulationEngine:
         if cemu.decides_accept(offer):
             await cemu.accept_offer(offer)
             courier.route = list(offer["route"])
-            courier.active_batch = [offer["orderId"]]
+            courier.active_order_id = offer["orderId"]           # ← один заказ
             courier.status = "BUSY"
             cemu.pending_offer = None
             self.metrics.offer_accepts += 1
-            self.metrics.batch_sizes.append(len(courier.active_batch))
+            self.metrics.batch_sizes.append(1)                   # фиксируем размер = 1
         else:
             await cemu.decline_offer(offer)
             cemu.pending_offer = None
+            courier.status = "IDLE"                              # ← вернуть в пул
             self.metrics.offer_declines += 1

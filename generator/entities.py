@@ -67,22 +67,22 @@ class Restaurant:
 class Courier:
     id: str
     position: Point
-    speed_mean: float         # м/с
+    speed_mean: float
     speed_sigma: float
-    status: str = "IDLE"      # IDLE | BUSY | OFFLINE
+    status: str = "IDLE"                      # IDLE | BUSY | OFFLINE | RESERVED
     route: list[dict] = field(default_factory=list)
-    active_batch: list[str] = field(default_factory=list)
+    active_order_id: Optional[str] = None     # ← один заказ, не список
     offer_accept_base: float = 0.85
     offer_detour_penalty: float = 0.15
 
-    def sample_speed(self, rng: SeededRNG) -> float:
+    def sample_speed(self, rng: "SeededRNG") -> float:
         return max(1.0, rng.normal(self.speed_mean, self.speed_sigma))
 
     def accept_probability(self, detour_ratio: float) -> float:
         p = self.offer_accept_base - self.offer_detour_penalty * max(0.0, detour_ratio - 1.0)
         return max(0.05, min(1.0, p))
 
-    def advance(self, dt: float, rng: SeededRNG) -> None:
+    def advance(self, dt: float, rng: "SeededRNG") -> None:
         if not self.route:
             return
         wp = self.route[0]
