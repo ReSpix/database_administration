@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 
 from .api import ApiClient
 from .core import Event, EventQueue, EventType, Point, SeededRNG
@@ -9,6 +10,8 @@ from .entities import Client, Courier, MenuItem, OrderStatus, Restaurant
 from .metrics import Metrics
 
 ARRIVAL_THRESHOLD_M = 5.0
+
+log = logging.getLogger("delivery_sim.engine")
 
 
 class SimulationEngine:
@@ -23,19 +26,20 @@ class SimulationEngine:
         duration: float = 3600.0,
         order_rate: float = 0.2,
         courier_tick: float = 2.0,
+        verbose: bool = False,
     ) -> None:
         self.api = api
         self.rng = rng
         self.duration = duration
         self.order_rate = order_rate
         self.courier_tick = courier_tick
+        self.verbose = verbose
 
         self.clients_by_id     = {c.id: c for c in clients}
         self.restaurants_by_id = {r.id: r for r in restaurants}
         self.couriers_by_id    = {c.id: c for c in couriers}
 
         self.client_emus = {c.id: ClientEmulator(c, api) for c in clients}
-        # Pass rng to client emulators for menu item picking
         for emu in self.client_emus.values():
             emu.rng = rng
         self.rest_emus   = {r.id: RestaurantEmulator(r, api, rng) for r in restaurants}
@@ -45,6 +49,14 @@ class SimulationEngine:
         self.clock = 0.0
         self.queue = EventQueue()
         self.metrics = Metrics()
+
+    def _log(self, event_type: str, msg: str) -> None:
+        if self.verbose:
+            log.info(f"[t={self.clock:.1f}] [{event_type}] {msg}")
+    
+    def _debug(self, event_type: str, msg: str) -> None:
+        if self.verbose:
+            log.debug(f"[t={self.clock:.1f}] [{event_type}] {msg}")
 
     # ------------------------------------------------------------------
     async def run(self) -> Metrics:
@@ -62,7 +74,7 @@ class SimulationEngine:
             try:
                 await self._handle(ev)
             except Exception as e:                    # noqa: BLE001
-                print(f"[sim] error handling {ev.type.name}: {e}")
+                log.error(f"[t={self.clock:.1f}] error handling {ev.type.name}: {e}")
 
         return self.metrics
 
@@ -103,6 +115,7 @@ class SimulationEngine:
             "status": OrderStatus.NEW,
         }
         self.metrics.orders_created += 1
+        self._log("ORDER_CREATED", f"order_id={oid} client_id={client.id} restaurant_id={rest.id}")
 
         self.queue.push(self.clock + self.rng.uniform(1.0, 3.0),
                         EventType.RESTAURANT_DECISION, {"order_id": oid})
@@ -115,9 +128,9 @@ class SimulationEngine:
         remu = self.rest_emus[rest.id]
 
         if not remu.decides_accept():
-            # Backend doesn't have reject - just leave as NEW (will timeout)
             order["status"] = OrderStatus.NEW
             self.metrics.orders_rejected += 1
+            self._log("ORDER_REJECTED", f"order_id={oid} restaurant_id={rest.id} reason=busy")
             return
 
         await remu.accept(oid)
@@ -125,9 +138,12 @@ class SimulationEngine:
         order["accepted_at"] = self.clock
         rest.active_orders += 1
         self.metrics.orders_accepted += 1
+        self._log("ORDER_ACCEPTED", f"order_id={oid} restaurant_id={rest.id}")
 
-        self.queue.push(self.clock + rest.sample_prep_time(self.rng),
+        prep_time = rest.sample_prep_time(self.rng)
+        self.queue.push(self.clock + prep_time,
                         EventType.PREP_DONE, {"order_id": oid})
+        self._log("COOKING_STARTED", f"order_id={oid} prep_time={prep_time:.0f}s ready_at={self.clock + prep_time:.1f}")
 
     async def _on_prep_done(self, oid: int) -> None:
         order = self.orders.get(oid)
@@ -139,6 +155,7 @@ class SimulationEngine:
         order["status"] = OrderStatus.READY
         order["ready_at"] = self.clock
         rest.active_orders = max(0, rest.active_orders - 1)
+        self._log("ORDER_READY", f"order_id={oid} restaurant_id={rest.id}")
 
         if order.get("accepted_at") is not None:
             self.metrics.prep_times.append(order["ready_at"] - order["accepted_at"])
@@ -162,17 +179,22 @@ class SimulationEngine:
                     order["status"] = OrderStatus.PICKED_UP
                     order["picked_up_at"] = self.clock
                     if order.get("ready_at") is not None:
-                        self.metrics.ready_to_pickup.append(self.clock - order["ready_at"])
+                        wait_time = self.clock - order["ready_at"]
+                        self.metrics.ready_to_pickup.append(wait_time)
+                        self._log("ORDER_PICKED_UP", f"order_id={order['id']} courier_id={cid} wait_time={wait_time:.0f}s")
                 elif order and wp["type"] == "dropoff":
                     order["status"] = OrderStatus.DELIVERED
                     order["delivered_at"] = self.clock
                     self.metrics.orders_delivered += 1
-                    self.metrics.delivery_times.append(self.clock - order["created_at"])
+                    delivery_time = self.clock - order["created_at"]
+                    self.metrics.delivery_times.append(delivery_time)
+                    self._log("ORDER_DELIVERED", f"order_id={order['id']} courier_id={cid} total_time={delivery_time:.0f}s")
 
-                # маршрут закончился → курьер свободен
+                # маршрут закончился -> курьер свободен
                 if not courier.route:
                     courier.active_order_id = None
                     courier.status = "IDLE"
+                    self._log("COURIER_IDLE", f"courier_id={cid}")
 
         # 2. heartbeat (location update)
         await cemu.heartbeat()
@@ -181,9 +203,13 @@ class SimulationEngine:
         if courier.status == "IDLE" and not courier.route:
             offer = await cemu.poll_offers()
             if offer:
-                # курьер «думает» 1–3 сим-секунды
-                self.queue.push(self.clock + self.rng.uniform(1.0, 3.0),
-                                EventType.OFFER_DECISION, {"courier_id": cid})
+                offer_id = offer.get('id', offer.get('order_id', 'unknown'))
+                self._log("OFFER_RECEIVED", f"courier_id={cid} offer_id={offer_id}")
+                # Only schedule decision if not already pending for this courier
+                if not getattr(courier, 'decision_pending', False):
+                    courier.decision_pending = True
+                    self.queue.push(self.clock + self.rng.uniform(1.0, 3.0),
+                                    EventType.OFFER_DECISION, {"courier_id": cid})
 
         # 4. следующий тик
         if self.clock < self.duration:
@@ -193,29 +219,47 @@ class SimulationEngine:
     async def _on_offer_decision(self, cid: int) -> None:
         courier = self.couriers_by_id[cid]
         cemu = self.cour_emus[cid]
-        offer = cemu.pending_order_id
+        # Reset decision pending flag
+        courier.decision_pending = False
+        self._debug("OFFER_DECISION", f"courier_id={cid} status={courier.status} route={courier.route} pending_offer={cemu.pending_offer}")
+        offer = cemu.pending_offer
         if offer is None:
+            self._debug("OFFER_NONE", f"courier_id={cid} no pending offer")
             return
         
-        # Get full offer data
-        offer_data = {"id": offer, "order_id": offer}
-        if cemu.decides_accept(offer_data):
-            await cemu.accept_order(offer_data)
-            # Build route: pickup at restaurant, dropoff at client
-            order = self.orders.get(offer)
+        offer_id = offer.get('id', offer.get('order_id', 'unknown'))
+        self._debug("DECIDES_ACCEPT", f"courier_id={cid} offer_id={offer_id}")
+        if cemu.decides_accept(offer):
+            self._debug("ACCEPTING", f"courier_id={cid} offer_id={offer_id}")
+            # Check if we know about this order
+            order = self.orders.get(offer_id)
+            if order is None:
+                # Unknown order - decline it
+                self._log("OFFER_UNKNOWN", f"courier_id={cid} offer_id={offer_id} not in local orders, declining")
+                await cemu.decline_order(offer)
+                cemu.pending_offer = None
+                courier.status = "IDLE"
+                self.metrics.offer_declines += 1
+                return
+            
+            self._debug("ACCEPTING", f"courier_id={cid} offer_id={offer_id}")
+            await cemu.accept_order(offer)
+            order = self.orders.get(offer_id)
             if order:
                 rest = self.restaurants_by_id[order["restaurant_id"]]
                 courier.route = [
-                    {"type": "pickup", "order_id": offer, "location": {"x": rest.position.x, "y": rest.position.y}},
-                    {"type": "dropoff", "order_id": offer, "location": {"x": order["address"].x, "y": order["address"].y}},
+                    {"type": "pickup", "order_id": offer_id, "location": {"x": rest.position.x, "y": rest.position.y}},
+                    {"type": "dropoff", "order_id": offer_id, "location": {"x": order["address"].x, "y": order["address"].y}},
                 ]
-                courier.active_order_id = offer
+                courier.active_order_id = offer_id
                 courier.status = "BUSY"
-                cemu.pending_order_id = None
+                cemu.pending_offer = None
                 self.metrics.offer_accepts += 1
                 self.metrics.batch_sizes.append(1)
+                self._log("OFFER_ACCEPTED", f"courier_id={cid} order_id={offer_id} restaurant_id={rest.id}")
         else:
-            await cemu.decline_order(offer_data)
-            cemu.pending_order_id = None
+            await cemu.decline_order(offer)
+            cemu.pending_offer = None
             courier.status = "IDLE"
             self.metrics.offer_declines += 1
+            self._log("OFFER_DECLINED", f"courier_id={cid} order_id={offer_id}")
