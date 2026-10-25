@@ -1,10 +1,13 @@
 services:
-  generator:
-    build:
-      context: .
+  sim:
+    build: .
+    env_file: .env
+    environment:
+      API_HOST: backend
+      API_PORT: 8080
     depends_on:
-      - postgres
-      - minio
+      backend:
+        condition: service_healthy
 
   postgres:
     image: postgres:16
