@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.database.models import (
     AuthProvider,
+    Base,
     Brand,
     Client,
     Courier,
@@ -16,7 +17,6 @@ from backend.database.models import (
     MenuItem,
     OrderStatus,
     Restaurant,
-    Base,
 )
 from backend.database.session import async_session_factory, engine
 

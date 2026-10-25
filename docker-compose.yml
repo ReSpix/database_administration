@@ -13,11 +13,25 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      db-init:
+        condition: service_completed_successfully
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 10s
       timeout: 5s
       retries: 10
+
+  db-init:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+        DATABASE_URL: "postgresql+asyncpg://postgres:postgres@postgres:5432/database"
+    command: ["python", "-m", "backend.init_db"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
 
   sim:
     build:
