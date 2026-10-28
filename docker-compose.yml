@@ -38,6 +38,11 @@ services:
       context: .
       dockerfile: generator/Dockerfile
     env_file: .env
+    volumes:
+      - ./logs:/app/logs
+    # Uncomment to enable quick mode (10 sec, verbose):
+    # environment:
+    #   SIM_QUICK: "true"
     depends_on:
       backend:
         condition: service_healthy

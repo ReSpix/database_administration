@@ -2,10 +2,13 @@
 from __future__ import annotations
 
 from decimal import Decimal
+import logging
 
 from .api import ApiClient
 from .core import Point, SeededRNG
 from .entities import Client, Courier, MenuItem, Restaurant
+
+log = logging.getLogger("delivery_sim.emulator")
 
 
 # Moscow reference point for local coordinate system (1 unit = 1 meter)
@@ -26,6 +29,7 @@ class ClientEmulator:
     def __init__(self, client: Client, api: ApiClient) -> None:
         self.client = client
         self.api = api
+        self._log = logging.getLogger("delivery_sim.emulator.client")
 
     async def create_order(self, restaurant: Restaurant, address: Point) -> int:
         # Pick 1-2 random menu items
@@ -63,6 +67,7 @@ class RestaurantEmulator:
         self.restaurant = restaurant
         self.api = api
         self.rng = rng
+        self._log = logging.getLogger("delivery_sim.emulator.restaurant")
 
     def decides_accept(self) -> bool:
         return self.rng.random() < self.restaurant.acceptance_probability()
@@ -79,7 +84,9 @@ class CourierEmulator:
         self.courier = courier
         self.api = api
         self.rng = rng
-        self.pending_order_id: int | None = None
+        self.pending_offer: dict | None = None
+        self.declined_offers: set[int] = set()  # Track recently declined offers
+        self._log = logging.getLogger("delivery_sim.emulator.courier")
 
     async def heartbeat(self) -> None:
         # Convert position from meters to lon/lat for API
@@ -91,16 +98,22 @@ class CourierEmulator:
 
     async def poll_offers(self) -> dict | None:
         """Get available orders from backend."""
-        if self.pending_order_id is not None:
-            return {"order_id": self.pending_order_id}
+        # If we already have a pending offer, return it (don't poll again)
+        if self.pending_offer is not None:
+            return self.pending_offer
         
         resp = await self.api.get(f"/couriers/{self.courier.id}/orders/available")
         orders = resp if isinstance(resp, list) else []
         if orders:
-            # Pick the first available order
-            order = orders[0]
-            self.pending_order_id = order["id"]
-            return order
+            # Pick the first available order that we haven't declined
+            for order in orders:
+                oid = order["id"]
+                if oid not in self.declined_offers:
+                    self.pending_offer = {"id": oid}
+                    return self.pending_offer
+            # All available orders were declined - don't offer them again
+            # Return None to indicate no acceptable offers
+            return None
         return None
 
     def decides_accept(self, order: dict) -> bool:
@@ -115,22 +128,41 @@ class CourierEmulator:
         courier_pos_ll = Point(courier_lon, courier_lat)
         
         detour_ratio = courier_pos_ll.distance(target) / 1000.0  # km
-        return self.rng.random() < self.courier.accept_probability(detour_ratio)
+        # Always accept for testing
+        return True
 
     async def accept_order(self, order: dict) -> None:
         oid = order["id"]
-        await self.api.post(f"/couriers/{self.courier.id}/orders/{oid}/accept", {})
-        self.pending_order_id = oid
+        try:
+            self._log.info(f"ACCEPT_API courier_id={self.courier.id} accepting order_id={oid}")
+            resp = await self.api.post(f"/couriers/{self.courier.id}/orders/{oid}/accept", {})
+            self._log.info(f"ACCEPT_RESP courier_id={self.courier.id} response={resp}")
+            # Clear pending offer after accepting
+            self.pending_offer = None
+            self.declined_offers.discard(oid)
+        except Exception as e:
+            self._log.error(f"ACCEPT_ERROR courier_id={self.courier.id} error={e}")
+            if "409" in str(e):
+                self.declined_offers.add(oid)
+                self.pending_offer = None
+                raise
+            raise
 
     async def decline_order(self, order: dict) -> None:
-        self.pending_order_id = None
+        oid = order["id"]
+        self._log.debug("DECLINE courier_id=%s order_id=%s", self.courier.id, oid)
+        self.declined_offers.add(oid)
+        # Clear pending offer after declining
+        self.pending_offer = None
 
     async def complete_pickup(self, order_id: int) -> None:
         await self.api.post(f"/couriers/{self.courier.id}/orders/{order_id}/pickup", {})
 
     async def complete_delivery(self, order_id: int) -> None:
         await self.api.post(f"/couriers/{self.courier.id}/orders/{order_id}/deliver", {})
-        self.pending_order_id = None
+        self.pending_offer = None
+        # Clear declined offers when order is delivered
+        self.declined_offers.discard(order_id)
 
     async def complete_waypoint(self, wp: dict) -> None:
         """Complete a waypoint (pickup or dropoff)."""

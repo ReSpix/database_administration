@@ -1,0 +1,1394 @@
+2026-10-25 09:54:29,665 INFO    delivery_sim: Logging to file: /app/logs/delivery_sim.log
+2026-10-25 09:54:29,665 INFO    generator.api: HttpApiClient → http://backend:8000 (timeout=5.0s, retries=3)
+2026-10-25 09:54:29,725 INFO    delivery_sim: Preflight http://backend:8000/health → 200 OK
+2026-10-25 09:54:29,726 INFO    delivery_sim: Cleaning database before simulation...
+2026-10-25 09:54:29,788 INFO    delivery_sim: Database cleaned via direct connection (truncated order tables)
+2026-10-25 09:54:29,790 INFO    delivery_sim: Scenario: default | Duration: 3600.0s | Order rate: 0.2/s | Couriers: 15 | Restaurants: 3 | Clients: 20
+2026-10-25 09:54:29,791 INFO    delivery_sim: Simulation start: duration=3600s, rate=0.20/s, couriers=15
+2026-10-25 09:54:44,681 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=5
+2026-10-25 09:54:44,703 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 5, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 09:54:44,748 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=5
+2026-10-25 09:54:44,759 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,759 ERROR   delivery_sim.engine: [t=176.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,810 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=5
+2026-10-25 09:54:44,818 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,818 ERROR   delivery_sim.engine: [t=177.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,842 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=5
+2026-10-25 09:54:44,849 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,849 ERROR   delivery_sim.engine: [t=177.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,849 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=5
+2026-10-25 09:54:44,857 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,857 ERROR   delivery_sim.engine: [t=177.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,857 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=5
+2026-10-25 09:54:44,865 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,865 ERROR   delivery_sim.engine: [t=177.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,872 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=5
+2026-10-25 09:54:44,879 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=14 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,879 ERROR   delivery_sim.engine: [t=178.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,916 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=5
+2026-10-25 09:54:44,924 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=1 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,924 ERROR   delivery_sim.engine: [t=178.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,974 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=5
+2026-10-25 09:54:44,985 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=9 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,985 ERROR   delivery_sim.engine: [t=178.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,985 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=5
+2026-10-25 09:54:44,994 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=13 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/13/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,994 ERROR   delivery_sim.engine: [t=178.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/13/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:44,994 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=5
+2026-10-25 09:54:45,002 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:45,002 ERROR   delivery_sim.engine: [t=178.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,094 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=9
+2026-10-25 09:54:52,116 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 9, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 09:54:52,140 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=9
+2026-10-25 09:54:52,147 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,148 ERROR   delivery_sim.engine: [t=258.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,153 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=9
+2026-10-25 09:54:52,161 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,161 ERROR   delivery_sim.engine: [t=258.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,167 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=9
+2026-10-25 09:54:52,174 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,174 ERROR   delivery_sim.engine: [t=259.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,174 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=9
+2026-10-25 09:54:52,181 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,181 ERROR   delivery_sim.engine: [t=259.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,199 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=9
+2026-10-25 09:54:52,206 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,206 ERROR   delivery_sim.engine: [t=259.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,212 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=9
+2026-10-25 09:54:52,218 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=2 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/2/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,218 ERROR   delivery_sim.engine: [t=259.5] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/2/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,240 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=9
+2026-10-25 09:54:52,247 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=14 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,247 ERROR   delivery_sim.engine: [t=259.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,253 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=9
+2026-10-25 09:54:52,259 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,259 ERROR   delivery_sim.engine: [t=259.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,260 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=9
+2026-10-25 09:54:52,267 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,267 ERROR   delivery_sim.engine: [t=259.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,267 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=9
+2026-10-25 09:54:52,273 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=9 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,273 ERROR   delivery_sim.engine: [t=260.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,298 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=9
+2026-10-25 09:54:52,304 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,305 ERROR   delivery_sim.engine: [t=260.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,344 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=9
+2026-10-25 09:54:52,350 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,350 ERROR   delivery_sim.engine: [t=260.5] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,375 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=9
+2026-10-25 09:54:52,382 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=1 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:52,382 ERROR   delivery_sim.engine: [t=260.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,801 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=3
+2026-10-25 09:54:56,814 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=2 response={'order_id': 3, 'courier_id': 2, 'status': 'assigned'}
+2026-10-25 09:54:56,825 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=3
+2026-10-25 09:54:56,831 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,831 ERROR   delivery_sim.engine: [t=312.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,831 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=3
+2026-10-25 09:54:56,837 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,837 ERROR   delivery_sim.engine: [t=312.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,898 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=3
+2026-10-25 09:54:56,904 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,904 ERROR   delivery_sim.engine: [t=312.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,922 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=3
+2026-10-25 09:54:56,929 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,929 ERROR   delivery_sim.engine: [t=313.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,944 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=3
+2026-10-25 09:54:56,950 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,950 ERROR   delivery_sim.engine: [t=313.5] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,961 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=3
+2026-10-25 09:54:56,967 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=14 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,967 ERROR   delivery_sim.engine: [t=313.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,967 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=3
+2026-10-25 09:54:56,974 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:56,974 ERROR   delivery_sim.engine: [t=313.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,581 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=7
+2026-10-25 09:54:57,595 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 7, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 09:54:57,612 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=7
+2026-10-25 09:54:57,618 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=1 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,618 ERROR   delivery_sim.engine: [t=321.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,627 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=7
+2026-10-25 09:54:57,634 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,634 ERROR   delivery_sim.engine: [t=321.6] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,642 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=7
+2026-10-25 09:54:57,653 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,653 ERROR   delivery_sim.engine: [t=321.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,653 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=7
+2026-10-25 09:54:57,661 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=9 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,661 ERROR   delivery_sim.engine: [t=322.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,698 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=7
+2026-10-25 09:54:57,705 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,705 ERROR   delivery_sim.engine: [t=322.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,705 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=7
+2026-10-25 09:54:57,711 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,711 ERROR   delivery_sim.engine: [t=322.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,711 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=7
+2026-10-25 09:54:57,717 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,717 ERROR   delivery_sim.engine: [t=322.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,740 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=7
+2026-10-25 09:54:57,746 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,747 ERROR   delivery_sim.engine: [t=322.6] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,747 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=7
+2026-10-25 09:54:57,754 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,755 ERROR   delivery_sim.engine: [t=322.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,771 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=7
+2026-10-25 09:54:57,775 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,776 ERROR   delivery_sim.engine: [t=322.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,786 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=19
+2026-10-25 09:54:57,805 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 19, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 09:54:57,846 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=19
+2026-10-25 09:54:57,856 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=1 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,856 ERROR   delivery_sim.engine: [t=323.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,856 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=19
+2026-10-25 09:54:57,866 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,866 ERROR   delivery_sim.engine: [t=323.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,949 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=19
+2026-10-25 09:54:57,955 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,955 ERROR   delivery_sim.engine: [t=324.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,960 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=19
+2026-10-25 09:54:57,965 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:57,965 ERROR   delivery_sim.engine: [t=325.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,172 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=14
+2026-10-25 09:54:58,185 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 14, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:54:58,190 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=14
+2026-10-25 09:54:58,195 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,195 ERROR   delivery_sim.engine: [t=327.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,195 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=14
+2026-10-25 09:54:58,200 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,200 ERROR   delivery_sim.engine: [t=327.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,220 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=14
+2026-10-25 09:54:58,225 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,225 ERROR   delivery_sim.engine: [t=328.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,255 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=14
+2026-10-25 09:54:58,262 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,262 ERROR   delivery_sim.engine: [t=328.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,262 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=14
+2026-10-25 09:54:58,267 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,267 ERROR   delivery_sim.engine: [t=328.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,280 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=14
+2026-10-25 09:54:58,287 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,287 ERROR   delivery_sim.engine: [t=329.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,291 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=14
+2026-10-25 09:54:58,296 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,296 ERROR   delivery_sim.engine: [t=329.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,321 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=14
+2026-10-25 09:54:58,326 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,326 ERROR   delivery_sim.engine: [t=329.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,336 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=14
+2026-10-25 09:54:58,341 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,341 ERROR   delivery_sim.engine: [t=329.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,681 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=24
+2026-10-25 09:54:58,693 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 24, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 09:54:58,693 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=24
+2026-10-25 09:54:58,700 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,700 ERROR   delivery_sim.engine: [t=335.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,717 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=24
+2026-10-25 09:54:58,722 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,722 ERROR   delivery_sim.engine: [t=335.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,722 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=24
+2026-10-25 09:54:58,728 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,728 ERROR   delivery_sim.engine: [t=335.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,728 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=24
+2026-10-25 09:54:58,734 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,734 ERROR   delivery_sim.engine: [t=335.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,734 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=24
+2026-10-25 09:54:58,740 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,740 ERROR   delivery_sim.engine: [t=335.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,741 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=24
+2026-10-25 09:54:58,746 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,746 ERROR   delivery_sim.engine: [t=335.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,819 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=24
+2026-10-25 09:54:58,827 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,827 ERROR   delivery_sim.engine: [t=336.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,878 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=24
+2026-10-25 09:54:58,884 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,884 ERROR   delivery_sim.engine: [t=336.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:58,972 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=4
+2026-10-25 09:54:58,986 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=3 response={'order_id': 4, 'courier_id': 3, 'status': 'assigned'}
+2026-10-25 09:54:59,041 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=4
+2026-10-25 09:54:59,046 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,046 ERROR   delivery_sim.engine: [t=338.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,071 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=4
+2026-10-25 09:54:59,076 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,076 ERROR   delivery_sim.engine: [t=339.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,076 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=4
+2026-10-25 09:54:59,081 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,081 ERROR   delivery_sim.engine: [t=339.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,121 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=4
+2026-10-25 09:54:59,127 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,127 ERROR   delivery_sim.engine: [t=340.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,132 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=4
+2026-10-25 09:54:59,140 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:54:59,140 ERROR   delivery_sim.engine: [t=340.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,749 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=37
+2026-10-25 09:55:00,770 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=4 response={'order_id': 37, 'courier_id': 4, 'status': 'assigned'}
+2026-10-25 09:55:00,793 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=37
+2026-10-25 09:55:00,800 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,800 ERROR   delivery_sim.engine: [t=365.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,824 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=37
+2026-10-25 09:55:00,831 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,831 ERROR   delivery_sim.engine: [t=366.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,851 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=37
+2026-10-25 09:55:00,858 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,859 ERROR   delivery_sim.engine: [t=366.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,859 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=37
+2026-10-25 09:55:00,865 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,865 ERROR   delivery_sim.engine: [t=366.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,872 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=37
+2026-10-25 09:55:00,878 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,878 ERROR   delivery_sim.engine: [t=366.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,940 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=37
+2026-10-25 09:55:00,946 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:00,946 ERROR   delivery_sim.engine: [t=367.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,110 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=26
+2026-10-25 09:55:01,121 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=7 response={'order_id': 26, 'courier_id': 7, 'status': 'assigned'}
+2026-10-25 09:55:01,125 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=26
+2026-10-25 09:55:01,130 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,130 ERROR   delivery_sim.engine: [t=369.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,130 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=26
+2026-10-25 09:55:01,136 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,137 ERROR   delivery_sim.engine: [t=369.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,149 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=26
+2026-10-25 09:55:01,155 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,156 ERROR   delivery_sim.engine: [t=369.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,156 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=26
+2026-10-25 09:55:01,163 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,163 ERROR   delivery_sim.engine: [t=370.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,272 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=26
+2026-10-25 09:55:01,278 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,278 ERROR   delivery_sim.engine: [t=371.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,321 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=32
+2026-10-25 09:55:01,333 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 32, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 09:55:01,338 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=32
+2026-10-25 09:55:01,344 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,345 ERROR   delivery_sim.engine: [t=372.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,368 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=32
+2026-10-25 09:55:01,374 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,374 ERROR   delivery_sim.engine: [t=372.5] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,402 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=32
+2026-10-25 09:55:01,413 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,413 ERROR   delivery_sim.engine: [t=373.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,566 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=36
+2026-10-25 09:55:01,578 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 36, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 09:55:01,578 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=36
+2026-10-25 09:55:01,585 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,585 ERROR   delivery_sim.engine: [t=375.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,634 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=36
+2026-10-25 09:55:01,640 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,640 ERROR   delivery_sim.engine: [t=376.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,703 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=36
+2026-10-25 09:55:01,709 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:01,710 ERROR   delivery_sim.engine: [t=377.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:02,444 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=8
+2026-10-25 09:55:02,463 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 8, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 09:55:02,472 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=8
+2026-10-25 09:55:02,481 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/8/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:02,482 ERROR   delivery_sim.engine: [t=390.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/8/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:02,523 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=8
+2026-10-25 09:55:02,530 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/8/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:02,530 ERROR   delivery_sim.engine: [t=391.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/8/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:02,966 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=10
+2026-10-25 09:55:02,979 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=11 response={'order_id': 10, 'courier_id': 11, 'status': 'assigned'}
+2026-10-25 09:55:03,044 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=10
+2026-10-25 09:55:03,051 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/10/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:03,051 ERROR   delivery_sim.engine: [t=400.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/10/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:03,284 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=15
+2026-10-25 09:55:03,296 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=12 response={'order_id': 15, 'courier_id': 12, 'status': 'assigned'}
+2026-10-25 09:55:06,282 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=1
+2026-10-25 09:55:06,295 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 1, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 09:55:06,785 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=16
+2026-10-25 09:55:06,798 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 16, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 09:55:07,673 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=18
+2026-10-25 09:55:07,685 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 18, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 09:55:10,751 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=21
+2026-10-25 09:55:10,764 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 21, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 09:55:10,874 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=28
+2026-10-25 09:55:10,886 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 28, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 09:55:11,154 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=40
+2026-10-25 09:55:11,166 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=7 response={'order_id': 40, 'courier_id': 7, 'status': 'assigned'}
+2026-10-25 09:55:12,646 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=2
+2026-10-25 09:55:12,660 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 2, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 09:55:13,513 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=42
+2026-10-25 09:55:13,526 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 42, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 09:55:14,910 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=49
+2026-10-25 09:55:14,923 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=2 response={'order_id': 49, 'courier_id': 2, 'status': 'assigned'}
+2026-10-25 09:55:15,710 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=29
+2026-10-25 09:55:15,722 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 29, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 09:55:16,033 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=52
+2026-10-25 09:55:16,046 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 52, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 09:55:16,546 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=13
+2026-10-25 09:55:16,560 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=12 response={'order_id': 13, 'courier_id': 12, 'status': 'assigned'}
+2026-10-25 09:55:16,810 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=59
+2026-10-25 09:55:16,824 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 59, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:55:17,230 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=64
+2026-10-25 09:55:17,242 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 64, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 09:55:18,524 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=43
+2026-10-25 09:55:18,536 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 43, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 09:55:18,737 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=66
+2026-10-25 09:55:18,750 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=3 response={'order_id': 66, 'courier_id': 3, 'status': 'assigned'}
+2026-10-25 09:55:19,230 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=50
+2026-10-25 09:55:19,244 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 50, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 09:55:19,735 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=71
+2026-10-25 09:55:19,748 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 71, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 09:55:21,247 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=72
+2026-10-25 09:55:21,261 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=4 response={'order_id': 72, 'courier_id': 4, 'status': 'assigned'}
+2026-10-25 09:55:21,650 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=76
+2026-10-25 09:55:21,664 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=11 response={'order_id': 76, 'courier_id': 11, 'status': 'assigned'}
+2026-10-25 09:55:30,457 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=70
+2026-10-25 09:55:30,470 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 70, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 09:55:31,610 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=74
+2026-10-25 09:55:31,624 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 74, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:55:32,008 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=77
+2026-10-25 09:55:32,021 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 77, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 09:55:35,216 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=79
+2026-10-25 09:55:35,236 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 79, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 09:55:35,882 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=80
+2026-10-25 09:55:35,901 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 80, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 09:55:37,029 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=81
+2026-10-25 09:55:37,050 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 81, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 09:55:39,254 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=82
+2026-10-25 09:55:39,266 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=2 response={'order_id': 82, 'courier_id': 2, 'status': 'assigned'}
+2026-10-25 09:55:39,586 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=83
+2026-10-25 09:55:39,612 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 83, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 09:55:40,298 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=86
+2026-10-25 09:55:40,309 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=7 response={'order_id': 86, 'courier_id': 7, 'status': 'assigned'}
+2026-10-25 09:55:40,445 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=86
+2026-10-25 09:55:40,451 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/86/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:40,451 ERROR   delivery_sim.engine: [t=1208.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/86/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:40,578 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=90
+2026-10-25 09:55:40,599 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=4 response={'order_id': 90, 'courier_id': 4, 'status': 'assigned'}
+2026-10-25 09:55:42,531 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=91
+2026-10-25 09:55:42,543 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 91, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 09:55:42,558 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=91
+2026-10-25 09:55:42,565 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/91/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:42,565 ERROR   delivery_sim.engine: [t=1245.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/91/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:55:42,745 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=93
+2026-10-25 09:55:42,761 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 93, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 09:55:43,117 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=95
+2026-10-25 09:55:43,128 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=12 response={'order_id': 95, 'courier_id': 12, 'status': 'assigned'}
+2026-10-25 09:55:44,291 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=98
+2026-10-25 09:55:44,302 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 98, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 09:55:49,373 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=102
+2026-10-25 09:55:49,388 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=11 response={'order_id': 102, 'courier_id': 11, 'status': 'assigned'}
+2026-10-25 09:55:51,429 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=103
+2026-10-25 09:55:51,443 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=3 response={'order_id': 103, 'courier_id': 3, 'status': 'assigned'}
+2026-10-25 09:55:53,820 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=104
+2026-10-25 09:55:53,832 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 104, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 09:55:55,159 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=109
+2026-10-25 09:55:55,173 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 109, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 09:55:55,857 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=110
+2026-10-25 09:55:55,870 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 110, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 09:55:56,692 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=113
+2026-10-25 09:55:56,713 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 113, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 09:55:58,585 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=115
+2026-10-25 09:55:58,597 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 115, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:56:00,197 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=117
+2026-10-25 09:56:00,209 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 117, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 09:56:01,960 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=118
+2026-10-25 09:56:01,980 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=7 response={'order_id': 118, 'courier_id': 7, 'status': 'assigned'}
+2026-10-25 09:56:02,187 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=121
+2026-10-25 09:56:02,206 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 121, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 09:56:02,923 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=126
+2026-10-25 09:56:02,947 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=12 response={'order_id': 126, 'courier_id': 12, 'status': 'assigned'}
+2026-10-25 09:56:04,669 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=127
+2026-10-25 09:56:04,681 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 127, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 09:56:06,393 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=140
+2026-10-25 09:56:06,407 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=3 response={'order_id': 140, 'courier_id': 3, 'status': 'assigned'}
+2026-10-25 09:56:08,977 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=145
+2026-10-25 09:56:09,002 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=2 response={'order_id': 145, 'courier_id': 2, 'status': 'assigned'}
+2026-10-25 09:56:12,801 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=146
+2026-10-25 09:56:12,814 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=4 response={'order_id': 146, 'courier_id': 4, 'status': 'assigned'}
+2026-10-25 09:56:13,516 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=147
+2026-10-25 09:56:13,528 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 147, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 09:56:13,953 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=148
+2026-10-25 09:56:13,966 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 148, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 09:56:13,966 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=148
+2026-10-25 09:56:13,972 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=14 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/148/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:56:13,972 ERROR   delivery_sim.engine: [t=1921.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/148/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 09:56:14,066 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=150
+2026-10-25 09:56:14,081 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 150, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 09:56:14,950 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=155
+2026-10-25 09:56:14,963 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 155, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 09:56:15,211 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=156
+2026-10-25 09:56:15,221 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 156, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 09:56:16,786 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=158
+2026-10-25 09:56:16,813 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=3 response={'order_id': 158, 'courier_id': 3, 'status': 'assigned'}
+2026-10-25 09:56:17,196 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=161
+2026-10-25 09:56:17,211 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=7 response={'order_id': 161, 'courier_id': 7, 'status': 'assigned'}
+2026-10-25 09:56:18,667 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=165
+2026-10-25 09:56:18,679 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 165, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 09:56:22,532 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=167
+2026-10-25 09:56:22,545 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=12 response={'order_id': 167, 'courier_id': 12, 'status': 'assigned'}
+2026-10-25 09:56:22,840 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=169
+2026-10-25 09:56:22,864 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 169, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 09:56:23,773 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=170
+2026-10-25 09:56:23,793 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=11 response={'order_id': 170, 'courier_id': 11, 'status': 'assigned'}
+2026-10-25 09:56:27,561 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=177
+2026-10-25 09:56:27,575 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 177, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:56:27,735 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=178
+2026-10-25 09:56:27,756 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 178, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 09:56:28,594 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=180
+2026-10-25 09:56:28,606 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 180, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 09:56:29,352 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=182
+2026-10-25 09:56:29,376 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 182, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 09:56:29,579 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=183
+2026-10-25 09:56:29,591 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 183, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 09:56:32,345 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=187
+2026-10-25 09:56:32,357 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=2 response={'order_id': 187, 'courier_id': 2, 'status': 'assigned'}
+2026-10-25 09:56:34,162 INFO    delivery_sim: Logging to file: /app/logs/delivery_sim.log
+2026-10-25 09:56:34,162 INFO    generator.api: HttpApiClient → http://backend:8000 (timeout=5.0s, retries=3)
+2026-10-25 09:56:34,214 INFO    delivery_sim: Preflight http://backend:8000/health → 200 OK
+2026-10-25 09:56:34,214 INFO    delivery_sim: Cleaning database before simulation...
+2026-10-25 09:56:34,264 INFO    delivery_sim: Database cleaned via direct connection (truncated order tables)
+2026-10-25 09:56:34,267 INFO    delivery_sim: Using scenario: single_courier_two_restaurants - 1 courier, 2 restaurants with different prep times, 3 clients, ~3 orders in 10 sec
+2026-10-25 09:56:34,267 INFO    delivery_sim: Scenario: single_courier_two_restaurants | Duration: 15.0s | Order rate: 0.3/s | Couriers: 1 | Restaurants: 2 | Clients: 3
+2026-10-25 09:56:34,267 INFO    delivery_sim: Simulation start: duration=15s, rate=0.30/s, couriers=1
+2026-10-25 09:56:34,296 INFO    delivery_sim.engine: [t=0.2] [ORDER_CREATED] order_id=2 client_id=1 restaurant_id=2
+2026-10-25 09:56:34,320 INFO    delivery_sim.engine: [t=1.9] [ORDER_CREATED] order_id=3 client_id=3 restaurant_id=1
+2026-10-25 09:56:34,347 INFO    delivery_sim.engine: [t=2.3] [ORDER_ACCEPTED] order_id=2 restaurant_id=2
+2026-10-25 09:56:34,347 INFO    delivery_sim.engine: [t=2.3] [COOKING_STARTED] order_id=2 prep_time=1s ready_at=3.2
+2026-10-25 09:56:34,373 INFO    delivery_sim.engine: [t=3.2] [ORDER_READY] order_id=2 restaurant_id=2
+2026-10-25 09:56:34,389 INFO    delivery_sim.engine: [t=3.3] [ORDER_CREATED] order_id=4 client_id=1 restaurant_id=1
+2026-10-25 09:56:34,405 INFO    delivery_sim.engine: [t=3.5] [ORDER_CREATED] order_id=5 client_id=3 restaurant_id=1
+2026-10-25 09:56:34,419 INFO    delivery_sim.engine: [t=3.6] [ORDER_ACCEPTED] order_id=3 restaurant_id=1
+2026-10-25 09:56:34,419 INFO    delivery_sim.engine: [t=3.6] [COOKING_STARTED] order_id=3 prep_time=1s ready_at=4.6
+2026-10-25 09:56:34,435 INFO    delivery_sim.engine: [t=4.0] [ORDER_CREATED] order_id=6 client_id=2 restaurant_id=2
+2026-10-25 09:56:34,453 INFO    delivery_sim.engine: [t=4.1] [OFFER_RECEIVED] courier_id=1 offer_id=2
+2026-10-25 09:56:34,467 INFO    delivery_sim.engine: [t=4.5] [ORDER_ACCEPTED] order_id=4 restaurant_id=1
+2026-10-25 09:56:34,468 INFO    delivery_sim.engine: [t=4.5] [COOKING_STARTED] order_id=4 prep_time=1s ready_at=5.6
+2026-10-25 09:56:34,484 INFO    delivery_sim.engine: [t=4.6] [ORDER_READY] order_id=3 restaurant_id=1
+2026-10-25 09:56:34,501 INFO    delivery_sim.engine: [t=4.8] [ORDER_CREATED] order_id=8 client_id=2 restaurant_id=2
+2026-10-25 09:56:34,507 INFO    delivery_sim.engine: [t=5.1] [OFFER_RECEIVED] courier_id=1 offer_id=2
+2026-10-25 09:56:34,521 INFO    delivery_sim.engine: [t=5.6] [ORDER_READY] order_id=4 restaurant_id=1
+2026-10-25 09:56:34,534 INFO    delivery_sim.engine: [t=5.7] [ORDER_ACCEPTED] order_id=6 restaurant_id=2
+2026-10-25 09:56:34,535 INFO    delivery_sim.engine: [t=5.7] [COOKING_STARTED] order_id=6 prep_time=1s ready_at=6.7
+2026-10-25 09:56:34,549 INFO    delivery_sim.engine: [t=5.7] [ORDER_ACCEPTED] order_id=5 restaurant_id=1
+2026-10-25 09:56:34,550 INFO    delivery_sim.engine: [t=5.7] [COOKING_STARTED] order_id=5 prep_time=1s ready_at=6.6
+2026-10-25 09:56:34,550 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=2
+2026-10-25 09:56:34,566 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 2, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:56:34,566 INFO    delivery_sim.engine: [t=5.9] [OFFER_ACCEPTED] courier_id=1 order_id=2 restaurant_id=2
+2026-10-25 09:56:34,587 INFO    delivery_sim.engine: [t=6.6] [ORDER_READY] order_id=5 restaurant_id=1
+2026-10-25 09:56:34,601 INFO    delivery_sim.engine: [t=6.7] [ORDER_READY] order_id=6 restaurant_id=2
+2026-10-25 09:56:34,622 INFO    delivery_sim.engine: [t=7.1] [ORDER_ACCEPTED] order_id=8 restaurant_id=2
+2026-10-25 09:56:34,622 INFO    delivery_sim.engine: [t=7.1] [COOKING_STARTED] order_id=8 prep_time=1s ready_at=8.1
+2026-10-25 09:56:34,644 INFO    delivery_sim.engine: [t=8.1] [ORDER_READY] order_id=8 restaurant_id=2
+2026-10-25 09:56:34,660 INFO    delivery_sim.engine: [t=8.2] [ORDER_CREATED] order_id=9 client_id=2 restaurant_id=2
+2026-10-25 09:56:34,675 INFO    delivery_sim.engine: [t=9.1] [ORDER_CREATED] order_id=10 client_id=3 restaurant_id=2
+2026-10-25 09:56:34,698 INFO    delivery_sim.engine: [t=10.1] [ORDER_PICKED_UP] order_id=2 courier_id=1 wait_time=7s
+2026-10-25 09:56:34,718 INFO    delivery_sim.engine: [t=10.5] [ORDER_ACCEPTED] order_id=9 restaurant_id=2
+2026-10-25 09:56:34,719 INFO    delivery_sim.engine: [t=10.5] [COOKING_STARTED] order_id=9 prep_time=1s ready_at=11.5
+2026-10-25 09:56:34,733 INFO    delivery_sim.engine: [t=11.0] [ORDER_ACCEPTED] order_id=10 restaurant_id=2
+2026-10-25 09:56:34,733 INFO    delivery_sim.engine: [t=11.0] [COOKING_STARTED] order_id=10 prep_time=1s ready_at=12.1
+2026-10-25 09:56:34,750 INFO    delivery_sim.engine: [t=11.5] [ORDER_READY] order_id=9 restaurant_id=2
+2026-10-25 09:56:34,771 INFO    delivery_sim.engine: [t=12.1] [ORDER_READY] order_id=10 restaurant_id=2
+2026-10-25 09:56:34,787 INFO    delivery_sim.engine: [t=13.1] [ORDER_DELIVERED] order_id=2 courier_id=1 total_time=13s
+2026-10-25 09:56:34,787 INFO    delivery_sim.engine: [t=13.1] [COURIER_IDLE] courier_id=1
+2026-10-25 09:56:34,801 INFO    delivery_sim.engine: [t=13.1] [OFFER_RECEIVED] courier_id=1 offer_id=3
+2026-10-25 09:56:34,807 INFO    delivery_sim.engine: [t=14.1] [OFFER_RECEIVED] courier_id=1 offer_id=3
+2026-10-25 09:56:34,807 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=3
+2026-10-25 09:56:34,822 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 3, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:56:34,823 INFO    delivery_sim.engine: [t=14.3] [OFFER_ACCEPTED] courier_id=1 order_id=3 restaurant_id=1
+2026-10-25 09:56:34,905 ERROR   delivery_sim.engine: [t=2378.4] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/13/orders/183/pickup'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:35,613 ERROR   delivery_sim.engine: [t=2396.9] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/1/orders/448/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:35,619 ERROR   delivery_sim.engine: [t=2397.0] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/11/orders/170/pickup'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:35,695 ERROR   delivery_sim.engine: [t=2398.4] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/3/orders/158/deliver'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,199 ERROR   delivery_sim.engine: [t=2414.8] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/8/orders/165/deliver'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,250 ERROR   delivery_sim.engine: [t=2416.9] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/467/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,339 ERROR   delivery_sim.engine: [t=2420.4] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/10/orders/178/pickup'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,384 ERROR   delivery_sim.engine: [t=2422.9] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/415/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,569 ERROR   delivery_sim.engine: [t=2431.3] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/14/orders/182/pickup'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,706 ERROR   delivery_sim.engine: [t=2437.4] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/483/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,762 ERROR   delivery_sim.engine: [t=2440.1] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/12/orders/167/deliver'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,847 ERROR   delivery_sim.engine: [t=2445.0] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/392/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:36,870 ERROR   delivery_sim.engine: [t=2446.1] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/1/orders/177/pickup'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:37,094 ERROR   delivery_sim.engine: [t=2460.3] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/2/orders/323/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:37,317 ERROR   delivery_sim.engine: [t=2473.0] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/469/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:37,333 ERROR   delivery_sim.engine: [t=2473.8] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/1/orders/454/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:37,519 ERROR   delivery_sim.engine: [t=2483.5] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/412/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:37,906 ERROR   delivery_sim.engine: [t=2505.1] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/15/orders/180/pickup'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:38,051 ERROR   delivery_sim.engine: [t=2513.8] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/2/orders/438/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:38,138 ERROR   delivery_sim.engine: [t=2518.2] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/2/orders/458/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:38,146 ERROR   delivery_sim.engine: [t=2519.0] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/1/orders/440/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:38,284 ERROR   delivery_sim.engine: [t=2527.4] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/5/orders/156/deliver'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:38,318 ERROR   delivery_sim.engine: [t=2528.2] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/7/orders/161/deliver'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:38,382 ERROR   delivery_sim.engine: [t=2532.1] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/9/orders/169/pickup'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:38,497 ERROR   delivery_sim.engine: [t=2546.4] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/1/orders/449/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,025 ERROR   delivery_sim.engine: [t=2595.8] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/6/orders/155/deliver'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,158 ERROR   delivery_sim.engine: [t=2615.5] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/2/orders/405/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,287 ERROR   delivery_sim.engine: [t=2629.0] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/1/orders/455/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,462 ERROR   delivery_sim.engine: [t=2660.6] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/2/orders/187/pickup'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,485 ERROR   delivery_sim.engine: [t=2663.1] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/1/orders/478/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,592 ERROR   delivery_sim.engine: [t=2677.2] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/1/orders/489/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,804 ERROR   delivery_sim.engine: [t=2714.1] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/491/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,898 ERROR   delivery_sim.engine: [t=2729.7] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/2/orders/490/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,941 ERROR   delivery_sim.engine: [t=2735.5] error handling COURIER_TICK: Client error '404 Not Found' for url 'http://backend:8000/couriers/4/orders/146/deliver'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:39,960 ERROR   delivery_sim.engine: [t=2742.9] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/492/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:40,024 ERROR   delivery_sim.engine: [t=2772.2] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/484/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:40,329 ERROR   delivery_sim.engine: [t=2833.1] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/3/orders/494/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:41,443 ERROR   delivery_sim.engine: [t=3186.8] error handling PREP_DONE: Client error '404 Not Found' for url 'http://backend:8000/restaurants/2/orders/474/ready'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-25 09:56:47,595 INFO    delivery_sim: Logging to file: /app/logs/delivery_sim.log
+2026-10-25 09:56:47,595 INFO    generator.api: HttpApiClient → http://backend:8000 (timeout=5.0s, retries=3)
+2026-10-25 09:56:47,649 INFO    delivery_sim: Preflight http://backend:8000/health → 200 OK
+2026-10-25 09:56:47,649 INFO    delivery_sim: Cleaning database before simulation...
+2026-10-25 09:56:47,712 INFO    delivery_sim: Database cleaned via direct connection (truncated order tables)
+2026-10-25 09:56:47,717 INFO    delivery_sim: Using scenario: single_courier_two_restaurants - 1 courier, 2 restaurants with different prep times, 3 clients, ~3 orders in 10 sec
+2026-10-25 09:56:47,717 INFO    delivery_sim: Scenario: single_courier_two_restaurants | Duration: 15.0s | Order rate: 0.3/s | Couriers: 1 | Restaurants: 2 | Clients: 3
+2026-10-25 09:56:47,717 INFO    delivery_sim: Simulation start: duration=15s, rate=0.30/s, couriers=1
+2026-10-25 09:56:47,749 INFO    delivery_sim.engine: [t=0.2] [ORDER_CREATED] order_id=1 client_id=1 restaurant_id=2
+2026-10-25 09:56:47,780 INFO    delivery_sim.engine: [t=1.9] [ORDER_CREATED] order_id=2 client_id=3 restaurant_id=1
+2026-10-25 09:56:47,810 INFO    delivery_sim.engine: [t=2.3] [ORDER_ACCEPTED] order_id=1 restaurant_id=2
+2026-10-25 09:56:47,810 INFO    delivery_sim.engine: [t=2.3] [COOKING_STARTED] order_id=1 prep_time=1s ready_at=3.2
+2026-10-25 09:56:47,848 INFO    delivery_sim.engine: [t=3.2] [ORDER_READY] order_id=1 restaurant_id=2
+2026-10-25 09:56:47,867 INFO    delivery_sim.engine: [t=3.3] [ORDER_CREATED] order_id=3 client_id=1 restaurant_id=1
+2026-10-25 09:56:47,887 INFO    delivery_sim.engine: [t=3.5] [ORDER_CREATED] order_id=4 client_id=3 restaurant_id=1
+2026-10-25 09:56:47,904 INFO    delivery_sim.engine: [t=3.6] [ORDER_ACCEPTED] order_id=2 restaurant_id=1
+2026-10-25 09:56:47,904 INFO    delivery_sim.engine: [t=3.6] [COOKING_STARTED] order_id=2 prep_time=1s ready_at=4.6
+2026-10-25 09:56:47,925 INFO    delivery_sim.engine: [t=4.0] [ORDER_CREATED] order_id=5 client_id=2 restaurant_id=2
+2026-10-25 09:56:47,937 INFO    delivery_sim.engine: [t=4.1] [OFFER_RECEIVED] courier_id=1 offer_id=1
+2026-10-25 09:56:47,949 INFO    delivery_sim.engine: [t=4.5] [ORDER_ACCEPTED] order_id=3 restaurant_id=1
+2026-10-25 09:56:47,950 INFO    delivery_sim.engine: [t=4.5] [COOKING_STARTED] order_id=3 prep_time=1s ready_at=5.6
+2026-10-25 09:56:47,964 INFO    delivery_sim.engine: [t=4.6] [ORDER_READY] order_id=2 restaurant_id=1
+2026-10-25 09:56:47,980 INFO    delivery_sim.engine: [t=4.8] [ORDER_CREATED] order_id=6 client_id=2 restaurant_id=2
+2026-10-25 09:56:47,986 INFO    delivery_sim.engine: [t=5.1] [OFFER_RECEIVED] courier_id=1 offer_id=1
+2026-10-25 09:56:48,002 INFO    delivery_sim.engine: [t=5.6] [ORDER_READY] order_id=3 restaurant_id=1
+2026-10-25 09:56:48,020 INFO    delivery_sim.engine: [t=5.7] [ORDER_ACCEPTED] order_id=5 restaurant_id=2
+2026-10-25 09:56:48,020 INFO    delivery_sim.engine: [t=5.7] [COOKING_STARTED] order_id=5 prep_time=1s ready_at=6.7
+2026-10-25 09:56:48,032 INFO    delivery_sim.engine: [t=5.7] [ORDER_ACCEPTED] order_id=4 restaurant_id=1
+2026-10-25 09:56:48,032 INFO    delivery_sim.engine: [t=5.7] [COOKING_STARTED] order_id=4 prep_time=1s ready_at=6.6
+2026-10-25 09:56:48,033 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=1
+2026-10-25 09:56:48,047 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 1, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:56:48,047 INFO    delivery_sim.engine: [t=5.9] [OFFER_ACCEPTED] courier_id=1 order_id=1 restaurant_id=2
+2026-10-25 09:56:48,064 INFO    delivery_sim.engine: [t=6.6] [ORDER_READY] order_id=4 restaurant_id=1
+2026-10-25 09:56:48,075 INFO    delivery_sim.engine: [t=6.7] [ORDER_READY] order_id=5 restaurant_id=2
+2026-10-25 09:56:48,091 INFO    delivery_sim.engine: [t=7.1] [ORDER_ACCEPTED] order_id=6 restaurant_id=2
+2026-10-25 09:56:48,091 INFO    delivery_sim.engine: [t=7.1] [COOKING_STARTED] order_id=6 prep_time=1s ready_at=8.1
+2026-10-25 09:56:48,116 INFO    delivery_sim.engine: [t=8.1] [ORDER_READY] order_id=6 restaurant_id=2
+2026-10-25 09:56:48,137 INFO    delivery_sim.engine: [t=8.2] [ORDER_CREATED] order_id=7 client_id=2 restaurant_id=2
+2026-10-25 09:56:48,156 INFO    delivery_sim.engine: [t=9.1] [ORDER_CREATED] order_id=8 client_id=3 restaurant_id=2
+2026-10-25 09:56:48,183 INFO    delivery_sim.engine: [t=10.1] [ORDER_PICKED_UP] order_id=1 courier_id=1 wait_time=7s
+2026-10-25 09:56:48,200 INFO    delivery_sim.engine: [t=10.5] [ORDER_ACCEPTED] order_id=7 restaurant_id=2
+2026-10-25 09:56:48,200 INFO    delivery_sim.engine: [t=10.5] [COOKING_STARTED] order_id=7 prep_time=1s ready_at=11.5
+2026-10-25 09:56:48,212 INFO    delivery_sim.engine: [t=11.0] [ORDER_ACCEPTED] order_id=8 restaurant_id=2
+2026-10-25 09:56:48,213 INFO    delivery_sim.engine: [t=11.0] [COOKING_STARTED] order_id=8 prep_time=1s ready_at=12.1
+2026-10-25 09:56:48,231 INFO    delivery_sim.engine: [t=11.5] [ORDER_READY] order_id=7 restaurant_id=2
+2026-10-25 09:56:48,249 INFO    delivery_sim.engine: [t=12.1] [ORDER_READY] order_id=8 restaurant_id=2
+2026-10-25 09:56:48,262 INFO    delivery_sim.engine: [t=13.1] [ORDER_DELIVERED] order_id=1 courier_id=1 total_time=13s
+2026-10-25 09:56:48,262 INFO    delivery_sim.engine: [t=13.1] [COURIER_IDLE] courier_id=1
+2026-10-25 09:56:48,273 INFO    delivery_sim.engine: [t=13.1] [OFFER_RECEIVED] courier_id=1 offer_id=2
+2026-10-25 09:56:48,279 INFO    delivery_sim.engine: [t=14.1] [OFFER_RECEIVED] courier_id=1 offer_id=2
+2026-10-25 09:56:48,279 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=2
+2026-10-25 09:56:48,293 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 2, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 09:56:48,293 INFO    delivery_sim.engine: [t=14.3] [OFFER_ACCEPTED] courier_id=1 order_id=2 restaurant_id=1
+2026-10-25 10:11:22,474 INFO    delivery_sim: Logging to file: /app/logs/delivery_sim.log
+2026-10-25 10:11:22,474 INFO    generator.api: HttpApiClient → http://backend:8000 (timeout=5.0s, retries=3)
+2026-10-25 10:11:22,526 INFO    delivery_sim: Preflight http://backend:8000/health → 200 OK
+2026-10-25 10:11:22,526 INFO    delivery_sim: Cleaning database before simulation...
+2026-10-25 10:11:22,593 INFO    delivery_sim: Database cleaned via direct connection (truncated order tables)
+2026-10-25 10:11:22,598 INFO    delivery_sim: Using scenario: single_courier_two_restaurants - 1 courier, 2 restaurants with different prep times, 3 clients, ~3 orders in 10 sec
+2026-10-25 10:11:22,599 INFO    delivery_sim: Scenario: single_courier_two_restaurants | Duration: 15.0s | Order rate: 0.3/s | Couriers: 1 | Restaurants: 2 | Clients: 3
+2026-10-25 10:11:22,599 INFO    delivery_sim: Simulation start: duration=15s, rate=0.30/s, couriers=1
+2026-10-25 10:11:22,631 INFO    delivery_sim.engine: [t=0.2] [ORDER_CREATED] order_id=1 client_id=1 restaurant_id=2
+2026-10-25 10:11:22,654 INFO    delivery_sim.engine: [t=1.9] [ORDER_CREATED] order_id=2 client_id=3 restaurant_id=1
+2026-10-25 10:11:22,679 INFO    delivery_sim.engine: [t=2.3] [ORDER_ACCEPTED] order_id=1 restaurant_id=2
+2026-10-25 10:11:22,679 INFO    delivery_sim.engine: [t=2.3] [COOKING_STARTED] order_id=1 prep_time=1s ready_at=3.2
+2026-10-25 10:11:22,705 INFO    delivery_sim.engine: [t=3.2] [ORDER_READY] order_id=1 restaurant_id=2
+2026-10-25 10:11:22,717 INFO    delivery_sim.engine: [t=3.3] [ORDER_CREATED] order_id=3 client_id=1 restaurant_id=1
+2026-10-25 10:11:22,732 INFO    delivery_sim.engine: [t=3.5] [ORDER_CREATED] order_id=4 client_id=3 restaurant_id=1
+2026-10-25 10:11:22,746 INFO    delivery_sim.engine: [t=3.6] [ORDER_ACCEPTED] order_id=2 restaurant_id=1
+2026-10-25 10:11:22,746 INFO    delivery_sim.engine: [t=3.6] [COOKING_STARTED] order_id=2 prep_time=1s ready_at=4.6
+2026-10-25 10:11:22,761 INFO    delivery_sim.engine: [t=4.0] [ORDER_CREATED] order_id=5 client_id=2 restaurant_id=2
+2026-10-25 10:11:22,773 INFO    delivery_sim.engine: [t=4.1] [OFFER_RECEIVED] courier_id=1 offer_id=1
+2026-10-25 10:11:22,785 INFO    delivery_sim.engine: [t=4.5] [ORDER_ACCEPTED] order_id=3 restaurant_id=1
+2026-10-25 10:11:22,785 INFO    delivery_sim.engine: [t=4.5] [COOKING_STARTED] order_id=3 prep_time=1s ready_at=5.6
+2026-10-25 10:11:22,798 INFO    delivery_sim.engine: [t=4.6] [ORDER_READY] order_id=2 restaurant_id=1
+2026-10-25 10:11:22,810 INFO    delivery_sim.engine: [t=4.8] [ORDER_CREATED] order_id=6 client_id=2 restaurant_id=2
+2026-10-25 10:11:22,815 INFO    delivery_sim.engine: [t=5.1] [OFFER_RECEIVED] courier_id=1 offer_id=1
+2026-10-25 10:11:22,826 INFO    delivery_sim.engine: [t=5.6] [ORDER_READY] order_id=3 restaurant_id=1
+2026-10-25 10:11:22,837 INFO    delivery_sim.engine: [t=5.7] [ORDER_ACCEPTED] order_id=5 restaurant_id=2
+2026-10-25 10:11:22,837 INFO    delivery_sim.engine: [t=5.7] [COOKING_STARTED] order_id=5 prep_time=1s ready_at=6.7
+2026-10-25 10:11:22,846 INFO    delivery_sim.engine: [t=5.7] [ORDER_ACCEPTED] order_id=4 restaurant_id=1
+2026-10-25 10:11:22,846 INFO    delivery_sim.engine: [t=5.7] [COOKING_STARTED] order_id=4 prep_time=1s ready_at=6.6
+2026-10-25 10:11:22,846 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=1
+2026-10-25 10:11:22,859 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 1, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 10:11:22,859 INFO    delivery_sim.engine: [t=5.9] [OFFER_ACCEPTED] courier_id=1 order_id=1 restaurant_id=2
+2026-10-25 10:11:22,875 INFO    delivery_sim.engine: [t=6.6] [ORDER_READY] order_id=4 restaurant_id=1
+2026-10-25 10:11:22,887 INFO    delivery_sim.engine: [t=6.7] [ORDER_READY] order_id=5 restaurant_id=2
+2026-10-25 10:11:22,903 INFO    delivery_sim.engine: [t=7.1] [ORDER_ACCEPTED] order_id=6 restaurant_id=2
+2026-10-25 10:11:22,903 INFO    delivery_sim.engine: [t=7.1] [COOKING_STARTED] order_id=6 prep_time=1s ready_at=8.1
+2026-10-25 10:11:22,919 INFO    delivery_sim.engine: [t=8.1] [ORDER_READY] order_id=6 restaurant_id=2
+2026-10-25 10:11:22,930 INFO    delivery_sim.engine: [t=8.2] [ORDER_CREATED] order_id=7 client_id=2 restaurant_id=2
+2026-10-25 10:11:22,941 INFO    delivery_sim.engine: [t=9.1] [ORDER_CREATED] order_id=8 client_id=3 restaurant_id=2
+2026-10-25 10:11:22,956 INFO    delivery_sim.engine: [t=10.1] [ORDER_PICKED_UP] order_id=1 courier_id=1 wait_time=7s
+2026-10-25 10:11:22,970 INFO    delivery_sim.engine: [t=10.5] [ORDER_ACCEPTED] order_id=7 restaurant_id=2
+2026-10-25 10:11:22,970 INFO    delivery_sim.engine: [t=10.5] [COOKING_STARTED] order_id=7 prep_time=1s ready_at=11.5
+2026-10-25 10:11:22,980 INFO    delivery_sim.engine: [t=11.0] [ORDER_ACCEPTED] order_id=8 restaurant_id=2
+2026-10-25 10:11:22,980 INFO    delivery_sim.engine: [t=11.0] [COOKING_STARTED] order_id=8 prep_time=1s ready_at=12.1
+2026-10-25 10:11:22,994 INFO    delivery_sim.engine: [t=11.5] [ORDER_READY] order_id=7 restaurant_id=2
+2026-10-25 10:11:23,007 INFO    delivery_sim.engine: [t=12.1] [ORDER_READY] order_id=8 restaurant_id=2
+2026-10-25 10:11:23,019 INFO    delivery_sim.engine: [t=13.1] [ORDER_DELIVERED] order_id=1 courier_id=1 total_time=13s
+2026-10-25 10:11:23,019 INFO    delivery_sim.engine: [t=13.1] [COURIER_IDLE] courier_id=1
+2026-10-25 10:11:23,028 INFO    delivery_sim.engine: [t=13.1] [OFFER_RECEIVED] courier_id=1 offer_id=2
+2026-10-25 10:11:23,032 INFO    delivery_sim.engine: [t=14.1] [OFFER_RECEIVED] courier_id=1 offer_id=2
+2026-10-25 10:11:23,032 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=2
+2026-10-25 10:11:23,043 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 2, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 10:11:23,043 INFO    delivery_sim.engine: [t=14.3] [OFFER_ACCEPTED] courier_id=1 order_id=2 restaurant_id=1
+2026-10-25 10:26:48,981 INFO    delivery_sim: Logging to file: /app/logs/delivery_sim.log
+2026-10-25 10:26:48,981 INFO    generator.api: HttpApiClient → http://backend:8000 (timeout=5.0s, retries=3)
+2026-10-25 10:26:49,033 INFO    delivery_sim: Preflight http://backend:8000/health → 200 OK
+2026-10-25 10:26:49,033 INFO    delivery_sim: Cleaning database before simulation...
+2026-10-25 10:26:49,091 INFO    delivery_sim: Database cleaned via direct connection (truncated order tables)
+2026-10-25 10:26:49,094 INFO    delivery_sim: Scenario: default | Duration: 3600.0s | Order rate: 0.2/s | Couriers: 15 | Restaurants: 3 | Clients: 20
+2026-10-25 10:26:49,095 INFO    delivery_sim: Simulation start: duration=3600s, rate=0.20/s, couriers=15
+2026-10-25 10:27:05,309 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=5
+2026-10-25 10:27:05,330 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 5, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 10:27:05,357 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=5
+2026-10-25 10:27:05,362 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,362 ERROR   delivery_sim.engine: [t=176.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,391 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=5
+2026-10-25 10:27:05,397 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,397 ERROR   delivery_sim.engine: [t=177.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,417 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=5
+2026-10-25 10:27:05,429 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,429 ERROR   delivery_sim.engine: [t=177.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,429 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=5
+2026-10-25 10:27:05,439 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,440 ERROR   delivery_sim.engine: [t=177.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,440 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=5
+2026-10-25 10:27:05,450 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,450 ERROR   delivery_sim.engine: [t=177.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,459 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=5
+2026-10-25 10:27:05,469 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=14 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,469 ERROR   delivery_sim.engine: [t=178.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,514 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=5
+2026-10-25 10:27:05,521 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=1 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,521 ERROR   delivery_sim.engine: [t=178.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,560 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=5
+2026-10-25 10:27:05,567 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=9 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,567 ERROR   delivery_sim.engine: [t=178.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,567 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=5
+2026-10-25 10:27:05,575 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=13 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/13/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,575 ERROR   delivery_sim.engine: [t=178.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/13/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,575 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=5
+2026-10-25 10:27:05,582 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:05,583 ERROR   delivery_sim.engine: [t=178.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/5/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,346 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=9
+2026-10-25 10:27:12,366 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 9, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 10:27:12,383 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=9
+2026-10-25 10:27:12,388 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,388 ERROR   delivery_sim.engine: [t=258.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,393 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=9
+2026-10-25 10:27:12,398 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,398 ERROR   delivery_sim.engine: [t=258.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,402 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=9
+2026-10-25 10:27:12,407 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,407 ERROR   delivery_sim.engine: [t=259.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,407 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=9
+2026-10-25 10:27:12,413 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,413 ERROR   delivery_sim.engine: [t=259.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,425 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=9
+2026-10-25 10:27:12,431 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,431 ERROR   delivery_sim.engine: [t=259.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,435 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=9
+2026-10-25 10:27:12,440 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=2 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/2/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,440 ERROR   delivery_sim.engine: [t=259.5] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/2/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,453 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=9
+2026-10-25 10:27:12,458 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=14 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,458 ERROR   delivery_sim.engine: [t=259.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,462 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=9
+2026-10-25 10:27:12,468 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,468 ERROR   delivery_sim.engine: [t=259.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,468 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=9
+2026-10-25 10:27:12,473 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,473 ERROR   delivery_sim.engine: [t=259.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,473 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=9
+2026-10-25 10:27:12,478 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=9 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,478 ERROR   delivery_sim.engine: [t=260.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,496 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=9
+2026-10-25 10:27:12,502 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,502 ERROR   delivery_sim.engine: [t=260.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,533 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=9
+2026-10-25 10:27:12,539 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,539 ERROR   delivery_sim.engine: [t=260.5] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,557 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=9
+2026-10-25 10:27:12,563 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=1 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:12,563 ERROR   delivery_sim.engine: [t=260.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/9/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:16,885 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=3
+2026-10-25 10:27:16,898 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=2 response={'order_id': 3, 'courier_id': 2, 'status': 'assigned'}
+2026-10-25 10:27:16,910 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=3
+2026-10-25 10:27:16,915 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:16,915 ERROR   delivery_sim.engine: [t=312.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:16,915 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=3
+2026-10-25 10:27:16,920 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:16,920 ERROR   delivery_sim.engine: [t=312.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:16,985 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=3
+2026-10-25 10:27:16,992 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:16,992 ERROR   delivery_sim.engine: [t=312.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,009 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=3
+2026-10-25 10:27:17,016 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,016 ERROR   delivery_sim.engine: [t=313.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,034 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=3
+2026-10-25 10:27:17,040 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,040 ERROR   delivery_sim.engine: [t=313.5] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,052 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=3
+2026-10-25 10:27:17,059 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=14 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,059 ERROR   delivery_sim.engine: [t=313.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/14/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,059 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=3
+2026-10-25 10:27:17,066 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,066 ERROR   delivery_sim.engine: [t=313.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/3/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,773 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=7
+2026-10-25 10:27:17,794 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 7, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 10:27:17,816 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=7
+2026-10-25 10:27:17,823 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=1 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,824 ERROR   delivery_sim.engine: [t=321.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,834 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=7
+2026-10-25 10:27:17,841 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,841 ERROR   delivery_sim.engine: [t=321.6] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,848 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=7
+2026-10-25 10:27:17,854 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,854 ERROR   delivery_sim.engine: [t=321.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,855 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=7
+2026-10-25 10:27:17,862 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=9 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,862 ERROR   delivery_sim.engine: [t=322.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/9/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,896 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=7
+2026-10-25 10:27:17,903 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,903 ERROR   delivery_sim.engine: [t=322.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,903 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=7
+2026-10-25 10:27:17,910 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,910 ERROR   delivery_sim.engine: [t=322.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,910 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=7
+2026-10-25 10:27:17,917 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,918 ERROR   delivery_sim.engine: [t=322.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,944 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=7
+2026-10-25 10:27:17,950 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,951 ERROR   delivery_sim.engine: [t=322.6] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,951 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=7
+2026-10-25 10:27:17,957 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,957 ERROR   delivery_sim.engine: [t=322.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,968 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=7
+2026-10-25 10:27:17,974 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,974 ERROR   delivery_sim.engine: [t=322.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/7/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:17,983 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=19
+2026-10-25 10:27:18,003 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 19, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 10:27:18,039 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=19
+2026-10-25 10:27:18,045 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=1 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,045 ERROR   delivery_sim.engine: [t=323.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/1/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,045 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=19
+2026-10-25 10:27:18,051 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,051 ERROR   delivery_sim.engine: [t=323.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,130 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=19
+2026-10-25 10:27:18,136 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,136 ERROR   delivery_sim.engine: [t=324.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,142 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=19
+2026-10-25 10:27:18,148 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,149 ERROR   delivery_sim.engine: [t=325.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/19/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,357 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=14
+2026-10-25 10:27:18,371 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 14, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 10:27:18,377 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=14
+2026-10-25 10:27:18,383 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,383 ERROR   delivery_sim.engine: [t=327.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,383 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=14
+2026-10-25 10:27:18,390 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,390 ERROR   delivery_sim.engine: [t=327.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,412 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=14
+2026-10-25 10:27:18,418 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,418 ERROR   delivery_sim.engine: [t=328.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,449 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=14
+2026-10-25 10:27:18,454 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,454 ERROR   delivery_sim.engine: [t=328.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,454 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=14
+2026-10-25 10:27:18,461 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,461 ERROR   delivery_sim.engine: [t=328.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,479 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=14
+2026-10-25 10:27:18,484 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,484 ERROR   delivery_sim.engine: [t=329.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,489 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=14
+2026-10-25 10:27:18,494 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,494 ERROR   delivery_sim.engine: [t=329.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,523 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=14
+2026-10-25 10:27:18,529 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,529 ERROR   delivery_sim.engine: [t=329.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,540 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=14
+2026-10-25 10:27:18,547 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,547 ERROR   delivery_sim.engine: [t=329.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/14/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,879 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=24
+2026-10-25 10:27:18,891 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 24, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 10:27:18,891 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=24
+2026-10-25 10:27:18,898 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,898 ERROR   delivery_sim.engine: [t=335.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,916 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=24
+2026-10-25 10:27:18,923 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,923 ERROR   delivery_sim.engine: [t=335.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,923 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=24
+2026-10-25 10:27:18,930 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,930 ERROR   delivery_sim.engine: [t=335.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,930 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=24
+2026-10-25 10:27:18,937 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,937 ERROR   delivery_sim.engine: [t=335.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,937 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=24
+2026-10-25 10:27:18,943 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,943 ERROR   delivery_sim.engine: [t=335.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,944 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=24
+2026-10-25 10:27:18,951 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:18,951 ERROR   delivery_sim.engine: [t=335.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,026 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=24
+2026-10-25 10:27:19,032 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=3 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,032 ERROR   delivery_sim.engine: [t=336.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/3/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,078 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=24
+2026-10-25 10:27:19,085 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,085 ERROR   delivery_sim.engine: [t=336.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/24/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,166 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=4
+2026-10-25 10:27:19,186 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=3 response={'order_id': 4, 'courier_id': 3, 'status': 'assigned'}
+2026-10-25 10:27:19,246 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=4
+2026-10-25 10:27:19,252 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,253 ERROR   delivery_sim.engine: [t=338.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,293 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=4
+2026-10-25 10:27:19,302 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,302 ERROR   delivery_sim.engine: [t=339.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,302 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=4
+2026-10-25 10:27:19,307 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,307 ERROR   delivery_sim.engine: [t=339.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,359 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=4
+2026-10-25 10:27:19,364 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,364 ERROR   delivery_sim.engine: [t=340.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,369 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=4
+2026-10-25 10:27:19,374 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:19,374 ERROR   delivery_sim.engine: [t=340.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/4/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,131 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=37
+2026-10-25 10:27:21,149 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=4 response={'order_id': 37, 'courier_id': 4, 'status': 'assigned'}
+2026-10-25 10:27:21,171 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=37
+2026-10-25 10:27:21,179 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,179 ERROR   delivery_sim.engine: [t=365.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,214 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=37
+2026-10-25 10:27:21,220 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,220 ERROR   delivery_sim.engine: [t=366.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,237 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=37
+2026-10-25 10:27:21,244 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,244 ERROR   delivery_sim.engine: [t=366.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,244 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=37
+2026-10-25 10:27:21,250 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,250 ERROR   delivery_sim.engine: [t=366.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,256 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=37
+2026-10-25 10:27:21,262 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=7 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,263 ERROR   delivery_sim.engine: [t=366.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/7/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,329 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=37
+2026-10-25 10:27:21,335 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,336 ERROR   delivery_sim.engine: [t=367.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/37/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,465 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=26
+2026-10-25 10:27:21,478 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=7 response={'order_id': 26, 'courier_id': 7, 'status': 'assigned'}
+2026-10-25 10:27:21,484 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=26
+2026-10-25 10:27:21,491 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,491 ERROR   delivery_sim.engine: [t=369.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,491 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=26
+2026-10-25 10:27:21,499 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=6 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,499 ERROR   delivery_sim.engine: [t=369.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/6/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,511 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=26
+2026-10-25 10:27:21,517 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,517 ERROR   delivery_sim.engine: [t=369.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,518 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=26
+2026-10-25 10:27:21,524 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,524 ERROR   delivery_sim.engine: [t=370.0] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,604 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=26
+2026-10-25 10:27:21,611 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=10 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,611 ERROR   delivery_sim.engine: [t=371.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/10/orders/26/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,651 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=32
+2026-10-25 10:27:21,664 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 32, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 10:27:21,670 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=32
+2026-10-25 10:27:21,676 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,676 ERROR   delivery_sim.engine: [t=372.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,700 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=32
+2026-10-25 10:27:21,707 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,707 ERROR   delivery_sim.engine: [t=372.5] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,730 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=32
+2026-10-25 10:27:21,736 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,737 ERROR   delivery_sim.engine: [t=373.1] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/32/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,855 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=36
+2026-10-25 10:27:21,867 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 36, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 10:27:21,867 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=36
+2026-10-25 10:27:21,872 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,872 ERROR   delivery_sim.engine: [t=375.3] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,910 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=36
+2026-10-25 10:27:21,915 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=5 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,915 ERROR   delivery_sim.engine: [t=376.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/5/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,973 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=36
+2026-10-25 10:27:21,980 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:21,980 ERROR   delivery_sim.engine: [t=377.9] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/36/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:22,649 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=8
+2026-10-25 10:27:22,662 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 8, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 10:27:22,666 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=8
+2026-10-25 10:27:22,671 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=11 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/8/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:22,671 ERROR   delivery_sim.engine: [t=390.8] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/11/orders/8/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:22,724 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=8
+2026-10-25 10:27:22,729 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/8/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:22,729 ERROR   delivery_sim.engine: [t=391.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/8/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:23,150 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=10
+2026-10-25 10:27:23,162 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=11 response={'order_id': 10, 'courier_id': 11, 'status': 'assigned'}
+2026-10-25 10:27:23,221 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=10
+2026-10-25 10:27:23,228 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=12 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/10/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:23,228 ERROR   delivery_sim.engine: [t=400.4] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/12/orders/10/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:27:23,435 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=15
+2026-10-25 10:27:23,448 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=12 response={'order_id': 15, 'courier_id': 12, 'status': 'assigned'}
+2026-10-25 10:27:26,474 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=1
+2026-10-25 10:27:26,487 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 1, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 10:27:26,954 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=16
+2026-10-25 10:27:26,973 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 16, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 10:27:27,894 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=18
+2026-10-25 10:27:27,907 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 18, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 10:27:30,830 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=21
+2026-10-25 10:27:30,843 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 21, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 10:27:30,930 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=28
+2026-10-25 10:27:30,946 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 28, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 10:27:31,204 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=40
+2026-10-25 10:27:31,218 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=7 response={'order_id': 40, 'courier_id': 7, 'status': 'assigned'}
+2026-10-25 10:27:32,583 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=2
+2026-10-25 10:27:32,596 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 2, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 10:27:33,393 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=42
+2026-10-25 10:27:33,407 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 42, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 10:27:34,899 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=49
+2026-10-25 10:27:34,910 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=2 response={'order_id': 49, 'courier_id': 2, 'status': 'assigned'}
+2026-10-25 10:27:35,690 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=29
+2026-10-25 10:27:35,703 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 29, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 10:27:36,075 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=52
+2026-10-25 10:27:36,086 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 52, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 10:27:36,537 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=13
+2026-10-25 10:27:36,547 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=12 response={'order_id': 13, 'courier_id': 12, 'status': 'assigned'}
+2026-10-25 10:27:36,782 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=59
+2026-10-25 10:27:36,794 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 59, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 10:27:37,238 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=64
+2026-10-25 10:27:37,251 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 64, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 10:27:38,553 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=43
+2026-10-25 10:27:38,565 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 43, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 10:27:38,736 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=3 accepting order_id=66
+2026-10-25 10:27:38,750 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=3 response={'order_id': 66, 'courier_id': 3, 'status': 'assigned'}
+2026-10-25 10:27:39,223 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=50
+2026-10-25 10:27:39,238 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 50, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 10:27:39,731 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=71
+2026-10-25 10:27:39,743 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 71, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 10:27:41,237 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=72
+2026-10-25 10:27:41,250 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=4 response={'order_id': 72, 'courier_id': 4, 'status': 'assigned'}
+2026-10-25 10:27:41,621 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=11 accepting order_id=76
+2026-10-25 10:27:41,639 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=11 response={'order_id': 76, 'courier_id': 11, 'status': 'assigned'}
+2026-10-25 10:27:50,545 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=70
+2026-10-25 10:27:50,558 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 70, 'courier_id': 13, 'status': 'assigned'}
+2026-10-25 10:27:51,641 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=1 accepting order_id=74
+2026-10-25 10:27:51,652 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=1 response={'order_id': 74, 'courier_id': 1, 'status': 'assigned'}
+2026-10-25 10:27:51,994 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=9 accepting order_id=77
+2026-10-25 10:27:52,013 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=9 response={'order_id': 77, 'courier_id': 9, 'status': 'assigned'}
+2026-10-25 10:27:55,311 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=10 accepting order_id=79
+2026-10-25 10:27:55,336 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=10 response={'order_id': 79, 'courier_id': 10, 'status': 'assigned'}
+2026-10-25 10:27:56,047 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=6 accepting order_id=80
+2026-10-25 10:27:56,066 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=6 response={'order_id': 80, 'courier_id': 6, 'status': 'assigned'}
+2026-10-25 10:27:57,004 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=5 accepting order_id=81
+2026-10-25 10:27:57,018 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=5 response={'order_id': 81, 'courier_id': 5, 'status': 'assigned'}
+2026-10-25 10:27:59,305 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=2 accepting order_id=82
+2026-10-25 10:27:59,316 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=2 response={'order_id': 82, 'courier_id': 2, 'status': 'assigned'}
+2026-10-25 10:27:59,623 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=14 accepting order_id=83
+2026-10-25 10:27:59,643 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=14 response={'order_id': 83, 'courier_id': 14, 'status': 'assigned'}
+2026-10-25 10:28:00,294 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=7 accepting order_id=86
+2026-10-25 10:28:00,308 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=7 response={'order_id': 86, 'courier_id': 7, 'status': 'assigned'}
+2026-10-25 10:28:00,438 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=86
+2026-10-25 10:28:00,445 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=4 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/86/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:28:00,445 ERROR   delivery_sim.engine: [t=1208.2] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/4/orders/86/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:28:00,552 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=4 accepting order_id=90
+2026-10-25 10:28:00,564 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=4 response={'order_id': 90, 'courier_id': 4, 'status': 'assigned'}
+2026-10-25 10:28:02,260 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=15 accepting order_id=91
+2026-10-25 10:28:02,273 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=15 response={'order_id': 91, 'courier_id': 15, 'status': 'assigned'}
+2026-10-25 10:28:02,289 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=91
+2026-10-25 10:28:02,296 ERROR   delivery_sim.emulator.courier: ACCEPT_ERROR courier_id=8 error=Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/91/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:28:02,296 ERROR   delivery_sim.engine: [t=1245.7] error handling OFFER_DECISION: Client error '409 Conflict' for url 'http://backend:8000/couriers/8/orders/91/accept'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+2026-10-25 10:28:02,492 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=8 accepting order_id=93
+2026-10-25 10:28:02,506 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=8 response={'order_id': 93, 'courier_id': 8, 'status': 'assigned'}
+2026-10-25 10:28:02,867 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=12 accepting order_id=95
+2026-10-25 10:28:02,881 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=12 response={'order_id': 95, 'courier_id': 12, 'status': 'assigned'}
+2026-10-25 10:28:03,878 INFO    delivery_sim.emulator.courier: ACCEPT_API courier_id=13 accepting order_id=98
+2026-10-25 10:28:03,890 INFO    delivery_sim.emulator.courier: ACCEPT_RESP courier_id=13 response={'order_id': 98, 'courier_id': 13, 'status': 'assigned'}
