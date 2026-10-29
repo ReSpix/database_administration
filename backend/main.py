@@ -138,13 +138,47 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
             await engine.dispose()
 
 
+
 app = FastAPI(title="Food Delivery API", lifespan=lifespan)
 app.include_router(public.router)
 app.include_router(clients.router)
 app.include_router(restaurants.router)
 app.include_router(couriers.router)
 
-
 @app.get("/health")
 async def health_check() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/health/db")
+async def db_health_check() -> dict[str, str]:
+    from sqlalchemy import text
+    from fastapi import HTTPException
+    # 1. Сырой коннект
+    try:
+        async with engine.connect() as conn:
+            row = (await conn.execute(
+                text("select current_user, current_database(), version()")
+            )).one()
+    except Exception as e:                                  # noqa: BLE001
+        raise HTTPException(
+            status_code=503,
+            detail=f"connection: FAIL {type(e).__name__}: {e}",
+        ) from e
+
+    # 2. Сессия из фабрики — то, что реально отдают эндпоинты
+    try:
+        async with async_session_factory() as s:
+            val = await s.scalar(text("select 1"))
+    except Exception as e:                                  # noqa: BLE001
+        raise HTTPException(
+            status_code=503,
+            detail=f"session: FAIL {type(e).__name__}: {e}",
+        ) from e
+
+    server_line = row[2].splitlines()[0]
+    return {
+        "connection": f"OK   user={row[0]}  db={row[1]}",
+        "server": server_line,
+        "session": f"OK   select 1 -> {val}",
+    }

@@ -298,7 +298,7 @@ async def test_save_and_search_courier_location(monkeypatch):
 
     redis.geoadd.assert_awaited_once_with(
         COURIER_LOCATIONS_KEY,
-        {"15": (37.6, 55.7)},
+        (37.6, 55.7, '15'),
     )
     redis.geosearch.assert_awaited_once_with(
         COURIER_LOCATIONS_KEY,
