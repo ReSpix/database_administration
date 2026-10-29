@@ -343,3 +343,18 @@ async def make_ready_order(client, client_id, restaurant, menu_item):
     await client.post(f"/restaurants/{restaurant.id}/orders/{order_id}/ready",
                       json={})
     return order_id
+
+
+def _available_ids(body):
+    """IDs из ответа /couriers/{id}/orders/available.
+
+    Ответ — список dict с 'id' (или устаревшим 'order_id'). Оставляем
+    устойчивую форму на случай, если API вернёт что-то иное.
+    """
+    ids = set()
+    for item in body:
+        if isinstance(item, dict):
+            ids.add(item.get("id", item.get("order_id")))
+        else:
+            ids.add(item)
+    return ids

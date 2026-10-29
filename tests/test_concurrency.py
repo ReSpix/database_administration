@@ -12,8 +12,11 @@ from backend.api.statuses import set_order_status
 from backend.database.models import (
     Brand, Client, Courier, Order, OrderAssignment, Restaurant,
 )
-from backend.database.session import engine as _app_engine
+from backend.database.session import engine as _app_engine, get_db_session
 from tests.conftest import _filtered
+
+from httpx import ASGITransport, AsyncClient
+from backend.main import app as _app
 
 pytestmark = pytest.mark.concurrency
 
@@ -143,3 +146,68 @@ async def test_concurrent_accept_only_one_wins(seeded_order):
             )
         )).scalars().all()
         assert len(rows) == 1
+
+@pytest.fixture
+async def concurrent_client():
+    """Каждый HTTP-запрос получает свою транзакцию.
+
+    В отличие от `integration_client` (общий savepoint-rollback),
+    здесь сессии независимы — это необходимо для настоящих гонок.
+    """
+    async def override():
+        async with _session() as s:
+            yield s
+
+    _app.dependency_overrides[get_db_session] = override
+    try:
+        async with AsyncClient(
+            transport=ASGITransport(app=_app), base_url="http://test",
+        ) as c:
+            yield c
+    finally:
+        _app.dependency_overrides.clear()
+
+
+@pytest.fixture
+async def assigned_order(seeded_order, concurrent_client):
+    """seeded_order в состоянии ready → accepted курьером A → assigned."""
+    r = await concurrent_client.post(
+        f"/couriers/{seeded_order['courier_a']}"
+        f"/orders/{seeded_order['order']}/accept",
+    )
+    assert r.status_code == 200, r.text
+    assert r.json()["status"] == "assigned"
+    return seeded_order
+
+
+async def test_concurrent_pickup_only_one_wins(
+    assigned_order, concurrent_client,
+):
+    """Двойной тап «picked up» / повтор при ретрае: ровно один 200,
+    второй — 409. Ловит отсутствие блокировки в pickup-переходе
+    (аналог уже покрытого race на accept)."""
+    courier_id = assigned_order["courier_a"]
+    order_id = assigned_order["order"]
+    url = f"/couriers/{courier_id}/orders/{order_id}/pickup"
+
+    r1, r2 = await asyncio.gather(
+        concurrent_client.post(url),
+        concurrent_client.post(url),
+    )
+    codes = sorted([r1.status_code, r2.status_code])
+    assert codes == [200, 409], (
+        f"Ожидалось ровно [200, 409], получено {codes}. "
+        f"body1={r1.text}, body2={r2.text}. "
+        "Вероятно, pickup не блокирует строку — двойной picked_up_at."
+    )
+
+    # Финальное состояние: ровно одна запись assignment с picked_up_at
+    async with _session() as s:
+        from sqlalchemy import select as _select
+        rows = (await s.execute(
+            _select(OrderAssignment).where(
+                OrderAssignment.order_id == order_id,
+            )
+        )).scalars().all()
+        assert len(rows) == 1
+        assert rows[0].picked_up_at is not None
