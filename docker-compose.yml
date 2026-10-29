@@ -21,34 +21,6 @@ services:
       timeout: 5s
       retries: 10
 
-  db-init:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile
-    environment:
-        DATABASE_URL: "postgresql+asyncpg://postgres:postgres@postgres:5432/database"
-    command: ["python", "-m", "backend.init_db"]
-    depends_on:
-      postgres:
-        condition: service_healthy
-    restart: "no"
-
-  sim:
-    build:
-      context: .
-      dockerfile: generator/Dockerfile
-    env_file: .env
-    volumes:
-      - ./logs:/app/logs
-    # Uncomment to enable quick mode (10 sec, verbose):
-    # environment:
-    #   SIM_QUICK: "true"
-    depends_on:
-      backend:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
-
   postgres:
     image: postgres:16
     environment:
@@ -64,6 +36,61 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  db-init:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+        DATABASE_URL: "postgresql+asyncpg://postgres:postgres@postgres:5432/database"
+    command: ["python", "-m", "backend.init_db"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  postgres-test:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: database_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  db-init-test:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://postgres:postgres@postgres-test:5432/database_test"
+      INIT_DB_SCHEMA_ONLY: "1"
+    command: ["python", "-m", "backend.init_db"]
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+    restart: "no"
+
+  # sim:
+  #   build:
+  #     context: .
+  #     dockerfile: generator/Dockerfile
+  #   env_file: .env
+  #   volumes:
+  #     - ./logs:/app/logs
+  #   # Uncomment to enable quick mode (10 sec, verbose):
+  #   # environment:
+  #   #   SIM_QUICK: "true"
+  #   depends_on:
+  #     backend:
+  #       condition: service_healthy
+  #     postgres:
+  #       condition: service_healthy
 
   redis:
     image: redis:7-alpine

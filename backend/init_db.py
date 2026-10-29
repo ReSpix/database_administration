@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Initialize database with test data for simulation."""
 
+import os
 import asyncio
 from decimal import Decimal
 
@@ -20,11 +21,15 @@ from backend.database.models import (
 )
 from backend.database.session import async_session_factory, engine
 
+SCHEMA_ONLY = os.getenv("INIT_DB_SCHEMA_ONLY") == "1"
 
 async def init_db() -> None:
     # Create all tables
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+    if SCHEMA_ONLY:
+        return
     
     async with async_session_factory() as session:
         # Check if already initialized
