@@ -96,6 +96,14 @@ async def create_order(
     if client is None:
         raise HTTPException(status_code=404, detail="Client not found")
 
+    order_dishes_amount = sum(dish.quantity for dish in order_data.items)
+
+    if order_dishes_amount > 99:
+        raise HTTPException(
+            status_code=400,
+            detail="Maximum 99 dishes in one order",
+        )
+
     restaurant = await session.get(Restaurant, order_data.restaurant_id)
     if restaurant is None:
         raise HTTPException(status_code=404, detail="Restaurant not found")

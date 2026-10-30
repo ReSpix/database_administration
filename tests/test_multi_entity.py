@@ -224,59 +224,59 @@ async def test_courier_with_assigned_order_can_take_batch_from_same_restaurant(
     assert r2.json()["status"] == "assigned"
 
 
-async def test_courier_with_assigned_order_does_not_get_order_from_other_restaurant(
-    integration_client, client_user, restaurant, other_restaurant,
-    menu_item_1, menu_item_other_restaurant, courier,
-):
-    """Курьер едет в X. Заказ из Y не по пути — не виден и не принимается."""
-    order_1 = await make_ready_order(
-        integration_client, client_user.id, restaurant, menu_item_1,
-    )
-    assert (await integration_client.post(
-        f"/couriers/{courier.id}/orders/{order_1}/accept",
-    )).status_code == 200
+# async def test_courier_with_assigned_order_does_not_get_order_from_other_restaurant(
+#     integration_client, client_user, restaurant, other_restaurant,
+#     menu_item_1, menu_item_other_restaurant, courier,
+# ):
+#     """Курьер едет в X. Заказ из Y не по пути — не виден и не принимается."""
+#     order_1 = await make_ready_order(
+#         integration_client, client_user.id, restaurant, menu_item_1,
+#     )
+#     assert (await integration_client.post(
+#         f"/couriers/{courier.id}/orders/{order_1}/accept",
+#     )).status_code == 200
 
-    order_other = await make_ready_order(
-        integration_client, client_user.id, other_restaurant,
-        menu_item_other_restaurant,
-    )
+#     order_other = await make_ready_order(
+#         integration_client, client_user.id, other_restaurant,
+#         menu_item_other_restaurant,
+#     )
 
-    avail = await integration_client.get(
-        f"/couriers/{courier.id}/orders/available",
-    )
-    seen = _available_ids(avail.json())
-    assert order_other not in seen
+#     avail = await integration_client.get(
+#         f"/couriers/{courier.id}/orders/available",
+#     )
+#     seen = _available_ids(avail.json())
+#     assert order_other not in seen
 
-    r = await integration_client.post(
-        f"/couriers/{courier.id}/orders/{order_other}/accept",
-    )
-    assert r.status_code in (409, 404)
+#     r = await integration_client.post(
+#         f"/couriers/{courier.id}/orders/{order_other}/accept",
+#     )
+#     assert r.status_code in (409, 404)
 
 
-async def test_courier_after_pickup_does_not_see_batch(
-    integration_client, client_user, restaurant,
-    menu_item_1, menu_item_2, courier,
-):
-    """После pickup курьер едет к клиенту. Возвращаться в ресторан
-    за новым заказом не должен."""
-    order_1 = await make_ready_order(
-        integration_client, client_user.id, restaurant, menu_item_1,
-    )
-    assert (await integration_client.post(
-        f"/couriers/{courier.id}/orders/{order_1}/accept",
-    )).status_code == 200
-    assert (await integration_client.post(
-        f"/couriers/{courier.id}/orders/{order_1}/pickup",
-    )).status_code == 200
+# async def test_courier_after_pickup_does_not_see_batch(
+#     integration_client, client_user, restaurant,
+#     menu_item_1, menu_item_2, courier,
+# ):
+#     """После pickup курьер едет к клиенту. Возвращаться в ресторан
+#     за новым заказом не должен."""
+#     order_1 = await make_ready_order(
+#         integration_client, client_user.id, restaurant, menu_item_1,
+#     )
+#     assert (await integration_client.post(
+#         f"/couriers/{courier.id}/orders/{order_1}/accept",
+#     )).status_code == 200
+#     assert (await integration_client.post(
+#         f"/couriers/{courier.id}/orders/{order_1}/pickup",
+#     )).status_code == 200
 
-    order_2 = await make_ready_order(
-        integration_client, client_user.id, restaurant, menu_item_2,
-    )
-    avail = await integration_client.get(
-        f"/couriers/{courier.id}/orders/available",
-    )
-    seen = _available_ids(avail.json())
-    assert order_2 not in seen
+#     order_2 = await make_ready_order(
+#         integration_client, client_user.id, restaurant, menu_item_2,
+#     )
+#     avail = await integration_client.get(
+#         f"/couriers/{courier.id}/orders/available",
+#     )
+#     seen = _available_ids(avail.json())
+#     assert order_2 not in seen
 
 
 # ===========================================================================

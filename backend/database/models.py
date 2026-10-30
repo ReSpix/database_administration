@@ -10,6 +10,7 @@ from sqlalchemy import (
     Integer,
     Numeric,
     String,
+    UniqueConstraint,
     func,
 )
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
@@ -163,7 +164,7 @@ class OrderItem(Base):
     order_id: Mapped[int] = mapped_column(ForeignKey("orders.id"))
     menu_item_id: Mapped[int] = mapped_column(ForeignKey("menu_items.id"))
     amount: Mapped[int] = mapped_column(Integer)
-    total_cost: Mapped[Decimal] = mapped_column(Numeric(10, 2))
+    total_cost: Mapped[Decimal] = mapped_column(Numeric(14, 2))
 
     order: Mapped[Order] = relationship(back_populates="items")
     menu_item: Mapped[MenuItem] = relationship(back_populates="order_items")
@@ -307,3 +308,7 @@ class Client(Base):
 
     auth_provider: Mapped[AuthProvider] = relationship(back_populates="clients")
     orders: Mapped[list[Order]] = relationship(back_populates="client")
+
+    __table_args__ = (
+        UniqueConstraint('auth_provider_id', 'external_id', name='uq_auth_client'),
+    )

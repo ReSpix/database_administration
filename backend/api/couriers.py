@@ -45,7 +45,11 @@ async def update_courier_location(
 async def list_available_orders(
     courier_id: int,
     session: AsyncSession = Depends(get_db_session),
+    limit: int | None = None
 ) -> list[dict[str, object]]:
+    if limit is None:
+        limit = 100
+    
     await require_courier(session, courier_id)
     assigned_order = select(OrderAssignment.id).where(
         OrderAssignment.order_id == Order.id
@@ -60,7 +64,7 @@ async def list_available_orders(
                 ~assigned_order.exists(),
             )
             .order_by(Order.created_at, Order.id)
-            .limit(100)
+            .limit(int(limit))
         )
     ).all()
     return [
