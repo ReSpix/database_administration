@@ -109,3 +109,39 @@ async def test_save_and_search_courier_location(redis_mock):
 async def test_nearby_couriers_rejects_invalid_search(radius_km, limit):
     with pytest.raises(ValueError):
         await find_nearby_couriers(37.6, 55.7, radius_km, limit)
+
+async def test_set_order_status_idempotent(session_mock):
+    """Повторный вызов не создаёт дубликат OrderStatus.
+    Ловит регрессию в `if status_id is None`, которую integration-тесты
+    не увидят — в реальной БД `scalar` возвращает id, и дубликат
+    всплывёт только через UNIQUE constraint (которого может не быть)."""
+    session_mock.scalar.return_value = 8
+    order = Order(
+        id=42, client_id=7, status_id=3, restaurant_id=11,
+        address="Main street 1",
+        longitude=Decimal("37.6"), latitude=Decimal("55.7"),
+    )
+
+    await set_order_status(session_mock, order, "accepted")
+    await set_order_status(session_mock, order, "accepted")
+
+    order_status_adds = [
+        c for c in session_mock.add.call_args_list
+        if isinstance(c.args[0], OrderStatus)
+    ]
+    assert order_status_adds == [], (
+        f"Создано {len(order_status_adds)} OrderStatus при существующем id — "
+        "функция не идемпотентна"
+    )
+    assert order.status_id == 8
+
+async def test_find_nearby_couriers_empty_result(redis_mock):
+    """Пустой результат geosearch возвращается как [], не None
+    и без падения на индексации."""
+    redis_mock.geosearch.return_value = []
+
+    result = await find_nearby_couriers(37.6, 55.7, 3, limit=10)
+
+    assert result == [], (
+        f"Пустой Redis-ответ превратился в {result!r} вместо []"
+    )
