@@ -17,14 +17,13 @@ from tests.conftest import _filtered
 
 from httpx import ASGITransport, AsyncClient
 from backend.main import app as _app
+from .conftest import _test_engine
 
 pytestmark = pytest.mark.concurrency
 
-_engine = create_async_engine(_app_engine.url, poolclass=NullPool)
-
 
 def _session():
-    return AsyncSession(bind=_engine, expire_on_commit=False)
+    return AsyncSession(bind=_test_engine, expire_on_commit=False)
 
 
 @pytest.fixture
@@ -110,7 +109,7 @@ async def seeded_order():
             # другие тесты в этой же сессии, а TRUNCATE в начале сессии
             # всё равно всё снесёт.
             await s.commit()
-        await _engine.dispose()
+        await _test_engine.dispose()
 
 
 async def _try_accept(courier_id, order_id):
