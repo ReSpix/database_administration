@@ -54,72 +54,73 @@ async def init_db() -> None:
 
         # Create dishes
         dishes_data = [
-            (1, "Margherita", "Classic pizza"),
-            (2, "Pepperoni", "Spicy pizza"),
-            (3, "Vegetarian", "Veggie pizza"),
-            (4, "Four Cheese", "Cheese pizza"),
-            (5, "Ribeye Steak", "Premium steak"),
-            (6, "Filet Mignon", "Tender steak"),
-            (7, "Burger", "Beef burger"),
-            (8, "Salmon Roll", "Sushi roll"),
-            (9, "Tuna Sashimi", "Fresh tuna"),
-            (10, "California Roll", "Classic roll"),
-            (11, "Eel Roll", "Unagi roll"),
+            ("Margherita", "Classic pizza"),
+            ("Pepperoni", "Spicy pizza"),
+            ("Vegetarian", "Veggie pizza"),
+            ("Four Cheese", "Cheese pizza"),
+            ("Ribeye Steak", "Premium steak"),
+            ("Filet Mignon", "Tender steak"),
+            ("Burger", "Beef burger"),
+            ("Salmon Roll", "Sushi roll"),
+            ("Tuna Sashimi", "Fresh tuna"),
+            ("California Roll", "Classic roll"),
+            ("Eel Roll", "Unagi roll"),
         ]
         
         dishes = {}
-        for dish_id, name, desc in dishes_data:
-            dish = Dish(id=dish_id, brand_id=brand.id, name=name, description=desc)
+        for name, desc in dishes_data:
+            dish = Dish(brand_id=brand.id, name=name, description=desc)
             session.add(dish)
-            dishes[dish_id] = dish
+            await session.refresh(dish)
+            dishes[dish.id] = dish
         await session.flush()
 
         # Create restaurants
         restaurants_data = [
-            (1, brand.id, "Pizza Place", "123 Main St", Decimal("37.6173"), Decimal("55.7558")),
-            (2, brand.id, "Steak House", "456 Oak Ave", Decimal("37.6200"), Decimal("55.7600")),
-            (3, brand.id, "Sushi Bar", "789 Pine Rd", Decimal("37.6250"), Decimal("55.7650")),
+            (brand.id, "Pizza Place", "123 Main St", Decimal("37.6173"), Decimal("55.7558")),
+            (brand.id, "Steak House", "456 Oak Ave", Decimal("37.6200"), Decimal("55.7600")),
+            (brand.id, "Sushi Bar", "789 Pine Rd", Decimal("37.6250"), Decimal("55.7650")),
         ]
 
         restaurants = {}
-        for rest_id, brand_id, name, addr, lon, lat in restaurants_data:
+        for brand_id, name, addr, lon, lat in restaurants_data:
             rest = Restaurant(
-                id=rest_id,
                 brand_id=brand_id,
                 address=addr,
                 longitude=lon,
                 latitude=lat,
             )
             session.add(rest)
-            restaurants[rest_id] = rest
+            await session.refresh(rest)
+            restaurants[rest.id] = rest
         await session.flush()
 
         # Create menu items
         menu_items_data = [
             # Restaurant 1 (Pizza)
-            (1, 1, 1, Decimal("12.50")),
-            (2, 1, 2, Decimal("14.00")),
-            (3, 1, 3, Decimal("13.00")),
-            (4, 1, 4, Decimal("15.00")),
+            (1, 1, Decimal("12.50")),
+            (1, 2, Decimal("14.00")),
+            (1, 3, Decimal("13.00")),
+            (1, 4, Decimal("15.00")),
             # Restaurant 2 (Steak)
-            (5, 2, 5, Decimal("25.00")),
-            (6, 2, 6, Decimal("30.00")),
-            (7, 2, 7, Decimal("18.00")),
+            (2, 5, Decimal("25.00")),
+            (2, 6, Decimal("30.00")),
+            (2, 7, Decimal("18.00")),
             # Restaurant 3 (Sushi)
-            (8, 3, 8, Decimal("10.00")),
-            (9, 3, 9, Decimal("16.00")),
-            (10, 3, 10, Decimal("12.00")),
-            (11, 3, 11, Decimal("14.00")),
+            (3, 8, Decimal("10.00")),
+            (3, 9, Decimal("16.00")),
+            (3, 10, Decimal("12.00")),
+            (3, 11, Decimal("14.00")),
         ]
 
-        for mi_id, rest_id, dish_id, price in menu_items_data:
+        for rest_id, dish_id, price in menu_items_data:
             mi = MenuItem(
-                id=mi_id,
                 restaurant_id=rest_id,
                 dish_id=dish_id,
                 price=price,
             )
             session.add(mi)
+            await session.refresh(mi)
 
         # Create auth provider
         auth_provider = AuthProvider(name="test")
@@ -129,7 +130,6 @@ async def init_db() -> None:
         # Create clients
         for i in range(1, 21):
             client = Client(
-                id=i,
                 auth_provider_id=auth_provider.id,
                 external_id=f"client_{i}",
             )
@@ -137,7 +137,7 @@ async def init_db() -> None:
 
         # Create couriers
         for i in range(1, 16):
-            courier = Courier(id=i, name=f"Courier {i}")
+            courier = Courier(name=f"Courier {i}")
             session.add(courier)
 
         await session.commit()
