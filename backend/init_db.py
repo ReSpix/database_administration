@@ -71,9 +71,9 @@ async def init_db() -> None:
         for name, desc in dishes_data:
             dish = Dish(brand_id=brand.id, name=name, description=desc)
             session.add(dish)
+            await session.flush()
             await session.refresh(dish)
             dishes[dish.id] = dish
-            await session.flush()
 
         # Create restaurants
         restaurants_data = [
@@ -91,9 +91,9 @@ async def init_db() -> None:
                 latitude=lat,
             )
             session.add(rest)
+            await session.flush()
             await session.refresh(rest)
             restaurants[rest.id] = rest
-            await session.flush()
 
         # Create menu items
         menu_items_data = [
