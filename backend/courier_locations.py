@@ -19,6 +19,15 @@ async def save_courier_location(
         (longitude, latitude, str(courier_id)),
     )
 
+async def get_couriers_location(
+    courier_ids: list[int],
+) -> tuple[float, float]:
+    """Returns list[tuple[longitude: float, latitude: float]]"""
+    return await redis_client.geopos(
+        COURIER_LOCATIONS_KEY, 
+        *[str(cid) for cid in courier_ids],
+    )
+
 
 async def find_nearby_couriers(
     longitude: float,

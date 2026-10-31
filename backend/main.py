@@ -3,7 +3,7 @@ from typing import AsyncIterator
 
 from fastapi import FastAPI
 
-from backend.api import clients, couriers, public, restaurants
+from backend.api import clients, couriers, public, restaurants, private
 from backend.courier_locations import redis_client
 from backend.database.session import engine, async_session_factory
 from backend.database.models import Base
@@ -144,6 +144,7 @@ app.include_router(public.router)
 app.include_router(clients.router)
 app.include_router(restaurants.router)
 app.include_router(couriers.router)
+app.include_router(private.router)
 
 @app.get("/health")
 async def health_check() -> dict[str, str]:
