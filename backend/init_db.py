@@ -45,7 +45,7 @@ async def init_db() -> None:
         for name in statuses:
             status = OrderStatus(name=name)
             session.add(status)
-        await session.flush()
+            await session.flush()
 
         # Create brand
         brand = Brand(name="Test Brand", description="Test brand for simulation")
@@ -73,7 +73,7 @@ async def init_db() -> None:
             session.add(dish)
             await session.refresh(dish)
             dishes[dish.id] = dish
-        await session.flush()
+            await session.flush()
 
         # Create restaurants
         restaurants_data = [
@@ -93,7 +93,7 @@ async def init_db() -> None:
             session.add(rest)
             await session.refresh(rest)
             restaurants[rest.id] = rest
-        await session.flush()
+            await session.flush()
 
         # Create menu items
         menu_items_data = [
@@ -120,6 +120,7 @@ async def init_db() -> None:
                 price=price,
             )
             session.add(mi)
+            await session.flush()
             await session.refresh(mi)
 
         # Create auth provider
@@ -134,11 +135,13 @@ async def init_db() -> None:
                 external_id=f"client_{i}",
             )
             session.add(client)
+            await session.flush()
 
         # Create couriers
         for i in range(1, 16):
             courier = Courier(name=f"Courier {i}")
             session.add(courier)
+            await session.flush()
 
         await session.commit()
         print("Database initialized successfully!")
