@@ -6,12 +6,15 @@ services:
     environment:
       DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/database
       REDIS_URL: redis://redis:6379/0
+      QDRANT_URL: http://qdrant:6333
     ports:
       - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
       redis:
+        condition: service_healthy
+      qdrant:
         condition: service_healthy
       db-init:
         condition: service_completed_successfully
@@ -122,7 +125,17 @@ services:
       timeout: 20s
       retries: 3
 
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/data
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   minio_data:
   redis_data:
+  qdrant_data:

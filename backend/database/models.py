@@ -50,13 +50,26 @@ class Dish(Base):
 # ─────────────────────────── Tag / Tag assignment ───────────────────────────
 
 
+class TagType(Base):
+    __tablename__ = "tag_types"
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    name: Mapped[str] = mapped_column(String)
+
+    tags: Mapped[list[Tag]] = relationship(back_populates="type")
+
+
 class Tag(Base):
     __tablename__ = "tags"
 
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     name: Mapped[str] = mapped_column(String)
+    type_id: Mapped[int | None] = mapped_column(
+        ForeignKey("tag_types.id"), nullable=True
+    )
 
     assignments: Mapped[list[TagAssignment]] = relationship(back_populates="tag")
+    type: Mapped[TagType | None] = relationship(back_populates="tags")
 
 
 class TagAssignment(Base):
@@ -310,5 +323,5 @@ class Client(Base):
     orders: Mapped[list[Order]] = relationship(back_populates="client")
 
     __table_args__ = (
-        UniqueConstraint('auth_provider_id', 'external_id', name='uq_auth_client'),
+        UniqueConstraint("auth_provider_id", "external_id", name="uq_auth_client"),
     )
