@@ -1,12 +1,17 @@
+import asyncio
+import logging
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
 
 from fastapi import FastAPI
 
-from backend.api import clients, couriers, public, restaurants, private
+from backend.api import clients, couriers, public, restaurants, private, recommendations
 from backend.courier_locations import redis_client
 from backend.database.session import engine, async_session_factory
 from backend.database.models import Base
+from backend.recommendations.qdrant import init_qdrant
+
+logger = logging.getLogger(__name__)
 
 
 async def init_seed_data() -> None:
@@ -128,6 +133,12 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     
     # Initialize seed data
     await init_seed_data()
+
+    try:
+        await asyncio.to_thread(init_qdrant)
+        logger.info("Qdrant collection ensured")
+    except Exception:
+        logger.exception("Failed to init Qdrant collection")
     
     try:
         yield
@@ -145,6 +156,7 @@ app.include_router(clients.router)
 app.include_router(restaurants.router)
 app.include_router(couriers.router)
 app.include_router(private.router)
+app.include_router(recommendations.router)
 
 @app.get("/health")
 async def health_check() -> dict[str, str]:
@@ -183,3 +195,4 @@ async def db_health_check() -> dict[str, str]:
         "server": server_line,
         "session": f"OK   select 1 -> {val}",
     }
+

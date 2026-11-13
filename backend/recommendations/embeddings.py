@@ -1,7 +1,9 @@
 import numpy as np
 from fastembed import TextEmbedding
 
-embedding_model = TextEmbedding(model_name="sergeyzh/rubert-tiny-turbo")
+embedding_model = TextEmbedding(
+    model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    )
 
 
 def text_to_vector(text: str) -> np.ndarray:

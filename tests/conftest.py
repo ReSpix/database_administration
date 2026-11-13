@@ -318,6 +318,22 @@ async def courier_3(db_session):
     return await _make_courier(db_session, "C")
 
 
+@pytest.fixture(autouse=True)
+def _no_real_embedding_refresh(monkeypatch):
+    """По умолчанию фоновая пересборка эмбеддинга — no-op.
+
+    Тесты, которым нужно её поведение, патчат `refresh_user_embedding`
+    в `backend.api.catalog` сами.
+    """
+    try:
+        from backend.api import catalog
+    except ImportError:
+        return
+    async def _noop(user_id: int) -> None:
+        return None
+    monkeypatch.setattr(catalog, "refresh_user_embedding", _noop)
+
+
 # ---------------------------------------------------------------------------
 # Хелперы
 # ---------------------------------------------------------------------------

@@ -6,7 +6,7 @@ from qdrant_client.models import Distance, PointStruct, VectorParams
 
 QDRANT_URL = os.getenv("QDRANT_URL", "http://qdrant:6333")
 COLLECTION_NAME = "user_profiles"
-VECTOR_SIZE = 128
+VECTOR_SIZE = 384
 
 client = QdrantClient(QDRANT_URL)
 
@@ -24,8 +24,9 @@ class VectorItem(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
-    vector: list[float]
+    vector: list[float] | None = None
     payload: dict | None = None
+    score: float | None = None
 
 
 class SearchQuery(BaseModel):

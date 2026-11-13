@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
 from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -15,6 +15,7 @@ from backend.database.models import (
     StopList,
 )
 from backend.database.session import get_db_session
+from backend.recommendations.profile_update import refresh_user_embedding
 
 router = APIRouter(tags=["catalog"])
 
@@ -90,6 +91,7 @@ async def list_dishes(
 @router.post("/orders", status_code=201)
 async def create_order(
     order_data: OrderCreate,
+    background_tasks: BackgroundTasks,
     session: AsyncSession = Depends(get_db_session),
 ) -> dict[str, object]:
     client = await session.get(Client, order_data.client_id)
@@ -159,6 +161,9 @@ async def create_order(
         )
 
     await session.commit()
+
+    background_tasks.add_task(refresh_user_embedding, client.id)
+
     return {
         "id": order.id,
         "status": NEW,
