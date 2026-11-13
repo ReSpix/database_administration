@@ -7,6 +7,9 @@ services:
       DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/database
       REDIS_URL: redis://redis:6379/0
       QDRANT_URL: http://qdrant:6333
+      FASTEMBED_CACHE_DIR: /app/model_cache
+    volumes:
+      - fastembed_model:/app/model_cache
     ports:
       - "8000:8000"
     depends_on:
@@ -146,3 +149,4 @@ volumes:
   minio_data:
   redis_data:
   qdrant_data:
+  fastembed_model:

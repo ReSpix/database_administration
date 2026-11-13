@@ -25,6 +25,8 @@ from tests.conftest import (
     create_order,
 )
 from backend.database.models import Client, Dish
+from backend.recommendations.embeddings import text_to_vector
+from backend.recommendations.profiler import text_template
 from backend.recommendations.qdrant import VectorItem
 
 
@@ -32,16 +34,19 @@ from backend.recommendations.qdrant import VectorItem
 # Локальные фикстуры
 # ---------------------------------------------------------------------------
 
+
 @pytest.fixture
 async def other_client(db_session, auth_provider):
     """Второй клиент — «похожий пользователь» в рекомендациях."""
     return await _persist(
         db_session,
-        Client(**_make_payload(
-            Client,
-            auth_provider_id=auth_provider.id,
-            external_id=f"other-{uuid.uuid4().hex[:6]}",
-        )),
+        Client(
+            **_make_payload(
+                Client,
+                auth_provider_id=auth_provider.id,
+                external_id=f"other-{uuid.uuid4().hex[:6]}",
+            )
+        ),
     )
 
 
@@ -55,9 +60,7 @@ def real_qdrant_collection(monkeypatch):
 
     from backend.recommendations import qdrant
 
-    client = QdrantClient(
-        url=os.getenv("TEST_QDRANT_URL", "http://localhost:6333")
-    )
+    client = QdrantClient(url=os.getenv("TEST_QDRANT_URL", "http://localhost:6333"))
     collection_name = f"test_recommendations_{uuid.uuid4().hex}"
     client.create_collection(
         collection_name=collection_name,
@@ -81,6 +84,7 @@ def real_qdrant_collection(monkeypatch):
 # 404 — несуществующий пользователь
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.integration
 async def test_recommendations_user_not_found(integration_client):
     """get_taste_text → None → 404. Мокать ничего не нужно: до эмбеддингов
@@ -93,6 +97,7 @@ async def test_recommendations_user_not_found(integration_client):
 # ---------------------------------------------------------------------------
 # Пустой Qdrant — нет похожих пользователей
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.integration
 async def test_recommendations_no_similar_users(integration_client, client_user):
@@ -119,9 +124,12 @@ async def test_recommendations_no_similar_users(integration_client, client_user)
 # Пользователь сам себе не рекомендуется (self-filter)
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.contract
 async def test_recommendations_excludes_self_from_similar_users(
-    integration_client, client_user, other_client,
+    integration_client,
+    client_user,
+    other_client,
 ):
     """Если Qdrant вернул самого пользователя — он должен быть отфильтрован."""
     fake_hits = [
@@ -148,6 +156,7 @@ async def test_recommendations_excludes_self_from_similar_users(
 # ---------------------------------------------------------------------------
 # Полный сценарий: рекомендуем то, что заказывали похожие, но не сам
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.integration
 async def test_recommendations_exclude_own_dishes(
@@ -210,6 +219,7 @@ async def test_recommendations_exclude_own_dishes(
 # Ограничение dishes_limit соблюдается
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.integration
 async def test_recommendations_respects_dishes_limit(
     integration_client,
@@ -253,6 +263,7 @@ async def test_recommendations_respects_dishes_limit(
 # Сценарий с несколькими группами покупателей и историей в реальной БД
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.integration
 async def test_recommendations_for_pizza_only_user_include_burgers(
     integration_client,
@@ -278,9 +289,7 @@ async def test_recommendations_for_pizza_only_user_include_burgers(
     async def use_test_db_session():
         yield db_session
 
-    monkeypatch.setattr(
-        profile_update, "async_session_factory", use_test_db_session
-    )
+    monkeypatch.setattr(profile_update, "async_session_factory", use_test_db_session)
 
     users = [client_user]
     for _ in range(10):
@@ -325,11 +334,46 @@ async def test_recommendations_for_pizza_only_user_include_burgers(
     qdrant_client, collection_name = real_qdrant_collection
     assert qdrant_client.count(collection_name).count == len(users)
 
-    response = await integration_client.get(
-        f"/recommendations/{users[10].id}"
-    )
+    response = await integration_client.get(f"/recommendations/{users[10].id}")
 
     assert response.status_code == 200, response.text
     body = response.json()
     recommended_dishes = {dish["name"]: dish["score"] for dish in body["dishes"]}
     assert recommended_dishes == {"Бургер": 5}
+
+
+@pytest.mark.integration
+def test_pizza_embedding_is_closer_to_burger_pizza_than_sushi_rolls():
+    profiles = [
+        {
+            "user_id": 1,
+            "kitchens": [],
+            "dish_types": [],
+            "last_orders": [("Бургер", 1), ("Пицца", 1)],
+        },
+        {
+            "user_id": 2,
+            "kitchens": [],
+            "dish_types": [],
+            "last_orders": [("Пицца", 1)],
+        },
+        {
+            "user_id": 3,
+            "kitchens": [],
+            "dish_types": [],
+            "last_orders": [("Суши", 1), ("Роллы", 1)],
+        },
+    ]
+    burger_pizza, pizza, sushi_rolls = (
+        text_to_vector(text_template(profile)) for profile in profiles
+    )
+
+    def cosine_distance(first: np.ndarray, second: np.ndarray) -> float:
+        cosine_similarity = np.dot(first, second) / (
+            np.linalg.norm(first) * np.linalg.norm(second)
+        )
+        return float(1 - cosine_similarity)
+
+    assert cosine_distance(pizza, burger_pizza) < cosine_distance(
+        pizza, sushi_rolls
+    )

@@ -24,7 +24,7 @@ class SimilarUser(BaseModel):
 class DishRecommendation(BaseModel):
     dish_id: int
     name: str
-    score: int          # суммарное amount по заказам похожих пользователей
+    score: int  # суммарное amount по заказам похожих пользователей
 
 
 class RecommendationResponse(BaseModel):
@@ -39,11 +39,17 @@ async def _find_similar_users(
     vector = text_to_vector(profile_text).tolist()
     hits = search_similar(SearchQuery(vector=vector, limit=limit + 1))
     # +1 чтобы был шанс отфильтровать самого себя, если он сохранён в Qdrant
-    return [
+    result = [
         SimilarUser(user_id=hit.id, score=float(hit.score or 0.0))
         for hit in hits
         if hit.id != user_id
     ][:limit]
+    for i in result:
+        print(i)
+    return result
+
+
+from sqlalchemy import exists, func, select
 
 
 async def _recommend_dishes(
@@ -55,27 +61,40 @@ async def _recommend_dishes(
     if not similar_user_ids:
         return []
 
-    # блюда, которые уже заказывал сам пользователь — их исключаем
-    ordered_by_user = (
-        select(MenuItem.dish_id)
-        .join(OrderItem, OrderItem.menu_item_id == MenuItem.id)
-        .join(Order, Order.id == OrderItem.order_id)
-        .where(Order.client_id == user_id)
+    # Проверка через NOT EXISTS работает быстрее и безопаснее, чем NOT IN
+    already_ordered = exists(
+        select(1)
+        .select_from(Order)
+        .join(OrderItem, OrderItem.order_id == Order.id)
+        .join(MenuItem, MenuItem.id == OrderItem.menu_item_id)
+        .where(
+            Order.client_id == user_id,
+            MenuItem.dish_id == Dish.id,
+        )
     )
 
     total = func.sum(OrderItem.amount).label("total")
-    stmt = (
-        select(Dish.id, Dish.name, total)
+
+    # Сначала считаем суммы только по ID (без лишнего JOIN и группировки по тексту)
+    top_dishes_subq = (
+        select(MenuItem.dish_id.label("dish_id"), total)
         .select_from(Order)
-        .join(Order.items)
-        .join(OrderItem.menu_item)
-        .join(MenuItem.dish)
+        .join(OrderItem, OrderItem.order_id == Order.id)
+        .join(MenuItem, MenuItem.id == OrderItem.menu_item_id)
         .where(Order.client_id.in_(similar_user_ids))
-        .where(~Dish.id.in_(ordered_by_user))
-        .group_by(Dish.id, Dish.name)
-        .order_by(total.desc(), Dish.name)
+        .group_by(MenuItem.dish_id)
+        .subquery()
+    )
+
+    # Присоединяем названия и отсекаем уже заказанные блюда
+    stmt = (
+        select(Dish.id, Dish.name, top_dishes_subq.c.total)
+        .join(top_dishes_subq, top_dishes_subq.c.dish_id == Dish.id)
+        .where(~already_ordered)
+        .order_by(top_dishes_subq.c.total.desc(), Dish.name)
         .limit(limit)
     )
+
     rows = (await session.execute(stmt)).all()
     return [
         DishRecommendation(dish_id=dish_id, name=name, score=int(amount))
