@@ -6,23 +6,26 @@
 - client_user, auth_provider, restaurant, menu_item_1, menu_item_2
 - create_order        — non-fixture helper: POST /orders
 
-Qdrant и модель эмбеддингов — внешние сервисы, мокаем по месту вызова
-в backend.api.recommendations.
+Большинство тестов изолируют поиск и эмбеддинги моками. Полный сценарий внизу
+использует настоящие эмбеддинги и отдельную временную коллекцию Qdrant.
 """
 
 import uuid
+from contextlib import asynccontextmanager
 from unittest.mock import patch
 
 import numpy as np
 import pytest
 
 # non-fixture helpers из conftest
-from tests.conftest import _make_payload, _persist, create_order
-from backend.database.models import Client
-from backend.database.session import get_db_session
-from backend.recommendations.embeddings import text_to_vector
-from backend.recommendations.profiler import get_taste_text
-from backend.recommendations.qdrant import VectorItem, SearchQuery, search_similar
+from tests.conftest import (
+    _make_menu_item,
+    _make_payload,
+    _persist,
+    create_order,
+)
+from backend.database.models import Client, Dish
+from backend.recommendations.qdrant import VectorItem
 
 
 # ---------------------------------------------------------------------------
@@ -40,6 +43,38 @@ async def other_client(db_session, auth_provider):
             external_id=f"other-{uuid.uuid4().hex[:6]}",
         )),
     )
+
+
+@pytest.fixture
+def real_qdrant_collection(monkeypatch):
+    """Изолированная коллекция на реальном Qdrant для интеграционных тестов."""
+    import os
+
+    from qdrant_client import QdrantClient
+    from qdrant_client.models import Distance, VectorParams
+
+    from backend.recommendations import qdrant
+
+    client = QdrantClient(
+        url=os.getenv("TEST_QDRANT_URL", "http://localhost:6333")
+    )
+    collection_name = f"test_recommendations_{uuid.uuid4().hex}"
+    client.create_collection(
+        collection_name=collection_name,
+        vectors_config=VectorParams(
+            size=qdrant.VECTOR_SIZE,
+            distance=Distance.COSINE,
+        ),
+    )
+    monkeypatch.setattr(qdrant, "client", client)
+    monkeypatch.setattr(qdrant, "COLLECTION_NAME", collection_name)
+    try:
+        yield client, collection_name
+    finally:
+        try:
+            client.delete_collection(collection_name)
+        finally:
+            client.close()
 
 
 # ---------------------------------------------------------------------------
@@ -212,3 +247,89 @@ async def test_recommendations_respects_dishes_limit(
 
     assert r.status_code == 200
     assert len(r.json()["dishes"]) <= 1
+
+
+# ---------------------------------------------------------------------------
+# Сценарий с несколькими группами покупателей и историей в реальной БД
+# ---------------------------------------------------------------------------
+
+@pytest.mark.integration
+async def test_recommendations_for_pizza_only_user_include_burgers(
+    integration_client,
+    db_session,
+    auth_provider,
+    client_user,
+    restaurant,
+    brand,
+    monkeypatch,
+    real_qdrant_collection,
+):
+    """Сохраняет пользователей, генерирует эмбеддинги и ищет похожих в Qdrant.
+
+    Пять пользователей заказывали бургеры и пиццу.
+    Еще пять пользователей заказывали суши и роллы.
+
+    Целевой пользователь (одиннадцатый) заказывал только пиццу, поэтому
+    бургер должен попасть в рекомендации, а суши и роллы — нет.
+    """
+    from backend.recommendations import profile_update
+
+    @asynccontextmanager
+    async def use_test_db_session():
+        yield db_session
+
+    monkeypatch.setattr(
+        profile_update, "async_session_factory", use_test_db_session
+    )
+
+    users = [client_user]
+    for _ in range(10):
+        users.append(
+            await _persist(
+                db_session,
+                Client(
+                    **_make_payload(
+                        Client,
+                        auth_provider_id=auth_provider.id,
+                        external_id=f"recommendation-{uuid.uuid4().hex}",
+                    )
+                ),
+            )
+        )
+
+    menu_items = {}
+    for name in ("Бургер", "Пицца", "Суши", "Роллы"):
+        dish = await _persist(
+            db_session,
+            Dish(**_make_payload(Dish, brand_id=brand.id, name=name)),
+        )
+        menu_items[name] = await _make_menu_item(
+            db_session, restaurant, dish, price=500
+        )
+
+    orders = [
+        (users[:5], [menu_items["Бургер"], menu_items["Пицца"]]),
+        (users[5:10], [menu_items["Суши"], menu_items["Роллы"]]),
+        ([users[10]], [menu_items["Пицца"]]),
+    ]
+    for cohort, items in orders:
+        for user in cohort:
+            response = await create_order(
+                integration_client,
+                client_id=user.id,
+                restaurant_id=restaurant.id,
+                items=[(item.id, 1) for item in items],
+            )
+            assert response.status_code == 201, response.text
+
+    qdrant_client, collection_name = real_qdrant_collection
+    assert qdrant_client.count(collection_name).count == len(users)
+
+    response = await integration_client.get(
+        f"/recommendations/{users[10].id}"
+    )
+
+    assert response.status_code == 200, response.text
+    body = response.json()
+    recommended_dishes = {dish["name"]: dish["score"] for dish in body["dishes"]}
+    assert recommended_dishes == {"Бургер": 5}
